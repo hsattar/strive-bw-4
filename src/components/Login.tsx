@@ -6,6 +6,7 @@ import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
 import { useNavigate } from 'react-router-dom'
+import { useState } from 'react'
  
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -18,17 +19,47 @@ const Item = styled(Paper)(({ theme }) => ({
 export default function Login() {
 
     const navigate = useNavigate()
+    const [userCredentials, setUserCredentials] = useState<IUserCredentials>({
+        username: '',
+        password: ''
+    })
 
     return (
-    <Container maxWidth="lg" style={{ minHeight: '80vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+    <Container maxWidth="lg" style={{ minHeight: '98vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
         <Grid container spacing={2} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
             <Grid item xs={12} md={8}>
                 <Item elevation={3}>
                     <Typography variant="h2" gutterBottom>WhatsApp Login</Typography>
-                    <TextField label="Username" variant="outlined" fullWidth style={{ margin: "1rem 0"}}/>
-                    <TextField label="Password" variant="outlined" type="password" fullWidth style={{ margin: "1rem 0"}}/>
-                    <Button variant="contained" fullWidth color="success" style={{ margin: "1rem 0"}}>Login</Button>
-                    <Button onClick={() => navigate('/register')} variant="outlined" fullWidth color="success" style={{ margin: "0.25rem 0"}}>Register</Button>
+                    <TextField 
+                        label="Username" 
+                        variant="outlined" 
+                        fullWidth 
+                        style={{ margin: "1rem 0"}}
+                    />
+                    <TextField 
+                        label="Password" 
+                        variant="outlined" 
+                        type="password" 
+                        fullWidth 
+                        style={{ margin: "1rem 0"}}
+                    />
+                    <Button 
+                        variant="contained" 
+                        fullWidth 
+                        color="success" 
+                        style={{ margin: "1rem 0"}}
+                    >
+                        Login
+                    </Button>
+                    <Button 
+                        onClick={() => navigate('/register')} 
+                        variant="outlined" 
+                        fullWidth 
+                        color="success" 
+                        style={{ margin: "0.25rem 0"}}
+                    >
+                        Register
+                    </Button>
                 </Item>
             </Grid>
         </Grid>
