@@ -48,7 +48,7 @@ export default function Login() {
                                  variant="outlined" 
                                  fullWidth
                                  color="success" 
-                                 style={{ margin: "1rem 0"}}
+                                 style={{ margin: "0.5rem 0"}}
                                  onChange={e => handleInput('firstName', e.target.value)}
                                 />
                         </Grid>
@@ -58,7 +58,7 @@ export default function Login() {
                                  variant="outlined" 
                                  fullWidth
                                  color="success" 
-                                 style={{ margin: "1rem 0"}}
+                                 style={{ margin: "0.5rem 0"}}
                                  onChange={e => handleInput('lastName', e.target.value)}
                                 />
                         </Grid>
@@ -68,7 +68,7 @@ export default function Login() {
                                 variant="outlined" 
                                 fullWidth
                                 color="success" 
-                                style={{ margin: "1rem 0"}}
+                                style={{ margin: "0.5rem 0"}}
                                 onChange={e => handleInput('username', e.target.value)}
                             />
                         </Grid>
@@ -78,7 +78,7 @@ export default function Login() {
                                 variant="outlined" 
                                 fullWidth
                                 color="success" 
-                                style={{ margin: "1rem 0"}}
+                                style={{ margin: "0.5rem 0"}}
                                 onChange={e => handleInput('email', e.target.value)}
                             />
                         </Grid>
@@ -89,7 +89,7 @@ export default function Login() {
                                 type="password" 
                                 fullWidth
                                 color="success" 
-                                style={{ margin: "1rem 0"}}
+                                style={{ margin: "0.5rem 0"}}
                                 onChange={e => handleInput('password', e.target.value)}
                             />
                         </Grid>
@@ -100,7 +100,7 @@ export default function Login() {
                                  type="password" 
                                  fullWidth
                                  color="success" 
-                                 style={{ margin: "1rem 0"}}
+                                 style={{ margin: "0.5rem 0"}}
                                  onChange={e => handleInput('confirmPassword', e.target.value)}
                                 />
                         </Grid>

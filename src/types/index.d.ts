@@ -9,3 +9,12 @@ interface IUserDetails extends IUserCredentials {
     email: string
     confirmPassword: string
 }
+
+interface IReduxStore {
+    user: IReduxStoreUser
+}
+
+interface IReduxStoreUser {
+    isLoggedIn: boolean
+    currentUser: any
+}
