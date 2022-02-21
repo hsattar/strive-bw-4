@@ -7,7 +7,8 @@ import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
 import { useNavigate } from 'react-router-dom'
 import { useState, FormEvent } from 'react'
- 
+import useAxios from '../hooks/useAxios' 
+
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
     ...theme.typography.body2,
@@ -19,6 +20,8 @@ const Item = styled(Paper)(({ theme }) => ({
 export default function Login() {
 
     const navigate = useNavigate()
+    const { axiosRequest } = useAxios()
+
     const [userError, setUserError] = useState(false)
     const [passwordError, setPasswordError] = useState(false)
     const [userDetails, setUserDetails] =useState<IUserDetails>({
@@ -46,7 +49,7 @@ export default function Login() {
         }))
     }
 
-    const handleSubmit = (e:FormEvent) => {
+    const handleSubmit = async (e:FormEvent) => {
         e.preventDefault()
         setUserError(false)
         setPasswordError(false)
@@ -70,6 +73,8 @@ export default function Login() {
         if (!firstName || !lastName || !username || !email || !password || !confirmPassword) setUserError(true)
         if (password !== confirmPassword) setPasswordError(true)
 
+        const response: any = await  axiosRequest('/users', 'POST', userDetails)
+        if (response.status === 400) console.log('bad request')
     }
 
     return (

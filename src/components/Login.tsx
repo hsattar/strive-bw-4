@@ -7,6 +7,7 @@ import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
 import { useNavigate } from 'react-router-dom'
 import { useState, FormEvent } from 'react'
+import useAxios from '../hooks/useAxios'
  
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -19,14 +20,16 @@ const Item = styled(Paper)(({ theme }) => ({
 export default function Login() {
 
     const navigate = useNavigate()
+    const { axiosRequest } = useAxios()
+
     const [userError, setUserError] = useState(false)
     const [invalidDetails, setInvalidDetails] = useState(false)
     const [userCredentials, setUserCredentials] = useState<IUserCredentials>({
-        username: '',
+        email: '',
         password: ''
     })
     const [loginError, setLoginError] = useState({
-        username: false,
+        email: false,
         password: false
     })
 
@@ -37,17 +40,20 @@ export default function Login() {
         }))
     }
 
-    const handleSubmit = (e:FormEvent) => {
+    const handleSubmit = async (e:FormEvent) => {
         e.preventDefault()
         setUserError(false)
         setInvalidDetails(false)
         setLoginError({
-            username: false,
+            email: false,
             password: false
         })
-        if (!userCredentials.username) setLoginError(errors => ({ ...errors, username: true }))
+        if (!userCredentials.email) setLoginError(errors => ({ ...errors, email: true }))
         if (!userCredentials.password) setLoginError(errors => ({ ...errors, password: true }))
-        if (!userCredentials.username || !userCredentials.password) setUserError(true)
+        if (!userCredentials.email || !userCredentials.password) setUserError(true)
+
+        const response: any = await axiosRequest('/users/login', 'POST', userCredentials)
+        if (response.status === 401) setInvalidDetails(true)
     }
 
     return (
@@ -60,14 +66,14 @@ export default function Login() {
                     { invalidDetails && <Alert severity="error">Your Details Are Incorrect!</Alert> }
                     <form noValidate autoComplete="off" onSubmit={handleSubmit}>
                     <TextField 
-                        label="Username" 
+                        label="Email" 
                         variant="outlined" 
                         fullWidth 
                         color="success"
                         style={{ margin: "1rem 0"}}
-                        value={userCredentials.username}
-                        onChange={e => handleInput('username', e.target.value)}
-                        error={loginError.username}
+                        value={userCredentials.email}
+                        onChange={e => handleInput('email', e.target.value)}
+                        error={loginError.email}
                     />
                     <TextField 
                         label="Password" 

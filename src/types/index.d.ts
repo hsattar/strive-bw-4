@@ -1,12 +1,12 @@
 interface IUserCredentials {
-    username: string
+    email: string
     password: string
 }
 
 interface IUserDetails extends IUserCredentials {
     firstName: string
     lastName: string
-    email: string
+    username: string
     confirmPassword: string
 }
 
