@@ -8,6 +8,8 @@ import Button from '@mui/material/Button'
 import { useNavigate } from 'react-router-dom'
 import { useState, FormEvent } from 'react'
 import useAxios from '../hooks/useAxios'
+import { useDispatch } from 'react-redux'
+import { userLoginAction } from '../redux/actions'
  
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -20,6 +22,7 @@ const Item = styled(Paper)(({ theme }) => ({
 export default function Login() {
 
     const navigate = useNavigate()
+    const dispatch = useDispatch()
     const { axiosRequest } = useAxios()
 
     const [userError, setUserError] = useState(false)
@@ -54,6 +57,10 @@ export default function Login() {
 
         const response: any = await axiosRequest('/users/login', 'POST', userCredentials)
         if (response.status === 401) setInvalidDetails(true)
+        if (response.status === 200) {
+            dispatch(userLoginAction())
+            navigate('/')
+        }
     }
 
     return (
