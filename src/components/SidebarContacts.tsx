@@ -1,8 +1,34 @@
-export default function SidebarContacts() {
+import List from '@mui/material/List'
+import ListItem from '@mui/material/ListItem'
+import Divider from '@mui/material/Divider'
+import ListItemText from '@mui/material/ListItemText'
+import ListItemAvatar from '@mui/material/ListItemAvatar'
+import Avatar from '@mui/material/Avatar'
+import Typography from '@mui/material/Typography'
+
+export default function AlignItemsList() {
   return (
-    <div>SidebarContacts</div>
+    <List sx={{ width: '100%', bgcolor: '#121A21' }}>
+      <ListItem alignItems="center">
+        <ListItemAvatar>
+          <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+        </ListItemAvatar>
+        <ListItemText
+          primary={ <Typography color="text.primary">Contact Name</Typography> }
+          secondary={
+              <Typography
+                sx={{ display: 'inline' }}
+                component="span"
+                variant="body2"
+                color="text.primary"
+                textOverflow="ellipsis"
+              >
+                Last Message
+              </Typography>
+          }
+        />
+      </ListItem>
+      {/* <Divider variant="inset" component="li" /> */}
+    </List>
   )
 }
-
-
-// #121A21

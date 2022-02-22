@@ -1,4 +1,4 @@
-import { Typography } from '@mui/material'
+import { Avatar, Typography } from '@mui/material'
 import Paper from '@mui/material/Paper'
 import { styled } from '@mui/material/styles'
 import MoreVertIcon from '@mui/icons-material/MoreVert'
@@ -17,7 +17,10 @@ export default function SidebarHeader() {
 
     return (
         <Item elevation={0} style={{ backgroundColor: '#202C34', display: 'flex', justifyContent: 'space-between' }}>
-            <Typography variant="subtitle1">Name</Typography>
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+                <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+                <Typography variant="subtitle1" style={{ paddingLeft: '1rem' }}>Name</Typography>
+            </div>
             <div>
                 <CircleOutlinedIcon style={{ paddingRight: '1rem'}}/>
                 <MessageIcon style={{ paddingRight: '0.5rem'}} />
