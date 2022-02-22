@@ -1,5 +1,11 @@
+import SidebarContacts from "./SidebarContacts"
+import SidebarHeader from "./SidebarHeader"
+
 export default function Sidebar() {
-  return (
-    <div>Sidebar</div>
-  )
+    return (
+        <>
+        <SidebarHeader />
+        <SidebarContacts />
+        </>
+    )
 }
