@@ -1,6 +1,6 @@
 import { applyMiddleware, combineReducers, compose, createStore } from "redux"
 import thunk from 'redux-thunk'
-import contactsReducer from "./reducers/contactsReducer"
+import conversationsReducer from "./reducers/conversationsReducer"
 import userReducer from "./reducers/userReducer"
 
 const composeSafely = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
@@ -10,17 +10,16 @@ export const initialState: IReduxStore = {
         isLoggedIn: false,
         currentUser: null,
     },
-    contacts: {
-        selected: null
-    },
     conversations: {
-        conversations: []
+        selected: null,
+        currentlyViewing: 'conversations',
+        all: []
     }
 }
 
 const rootReducer = combineReducers({
     user: userReducer,
-    contacts: contactsReducer
+    conversations: conversationsReducer
 })
 
 export const storeConfig = createStore(rootReducer, initialState, composeSafely(applyMiddleware(thunk)))

@@ -9,6 +9,8 @@ export default function AlignItemsList() {
     const currentUser = useSelector((state: IReduxStore) => state.user.currentUser)
 
     return (
+        <>
+        { currentUser && (
         <List className="sidebar-contacts">
             <TextField 
                 placeholder="Search"
@@ -26,5 +28,9 @@ export default function AlignItemsList() {
             />
             { currentUser.conversations.map((user: any) => <SingleSidebarContact contact={user} /> ) }
         </List>
+        )
+
+        }
+        </>
     )
 }

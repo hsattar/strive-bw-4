@@ -5,13 +5,14 @@ import Paper from '@mui/material/Paper'
 import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
+import LoadingButton from '@mui/lab/LoadingButton'
 import { useNavigate } from 'react-router-dom'
 import { useState, FormEvent } from 'react'
 import useAxios from '../hooks/useAxios'
 import { useDispatch } from 'react-redux'
 import { userLoginAction } from '../redux/actions'
  
-const Item = styled(Paper)(({ theme }) => ({
+const Item = styled(Paper)(({ theme }: any) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
     ...theme.typography.body2,
     padding: theme.spacing(2),
@@ -25,6 +26,7 @@ export default function Login() {
     const dispatch = useDispatch()
     const { axiosRequest } = useAxios()
 
+    const [loading, setLoading] = useState(false)
     const [userError, setUserError] = useState(false)
     const [invalidDetails, setInvalidDetails] = useState(false)
     const [userCredentials, setUserCredentials] = useState<IUserCredentials>({
@@ -55,12 +57,14 @@ export default function Login() {
         if (!userCredentials.password) setLoginError(errors => ({ ...errors, password: true }))
         if (!userCredentials.email || !userCredentials.password) setUserError(true)
 
+        setLoading(true)
         const response: any = await axiosRequest('/users/login', 'POST', userCredentials)
         if (response.status === 401) setInvalidDetails(true)
         if (response.status === 200) {
             dispatch(userLoginAction())
             navigate('/')
         }
+        setLoading(false)
     }
 
     return (
@@ -93,15 +97,17 @@ export default function Login() {
                         onChange={e => handleInput('password', e.target.value)}
                         error={loginError.password}
                     />
-                    <Button 
+                    <LoadingButton 
                         type="submit"
                         variant="contained" 
                         fullWidth 
                         color="success" 
                         style={{ margin: "1rem 0"}}
+                        disabled={loading}
+                        loading={loading}
                     >
                         Login
-                    </Button>
+                    </LoadingButton>
                     </form>
                     <Button 
                         onClick={() => navigate('/register')} 
@@ -109,6 +115,7 @@ export default function Login() {
                         fullWidth 
                         color="success" 
                         style={{ margin: "0.25rem 0"}}
+                        disabled={loading}
                     >
                         Register
                     </Button>

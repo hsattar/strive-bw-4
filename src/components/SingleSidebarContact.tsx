@@ -14,7 +14,7 @@ interface IProps {
 export default function SingleSidebarContact({ contact }: IProps) {
 
     const dispatch = useDispatch()
-    const selectedContact = useSelector((state: IReduxStore) => state.contacts.selected)
+    const selectedContact = useSelector((state: IReduxStore) => state.conversations.selected)
 
     const selected = selectedContact === contact
 

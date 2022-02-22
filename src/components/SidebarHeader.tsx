@@ -5,9 +5,11 @@ import MoreVertIcon from '@mui/icons-material/MoreVert'
 import MessageIcon from '@mui/icons-material/Message'
 import PeopleIcon from '@mui/icons-material/People'
 import useAxios from '../hooks/useAxios'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import KeyboardBackspaceOutlinedIcon from '@mui/icons-material/KeyboardBackspaceOutlined';
+import { changeSidebarViewAction } from '../redux/actions'
  
-const Item = styled(Paper)(({ theme }) => ({
+const Item = styled(Paper)(({ theme }: any) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
     ...theme.typography.body2,
     padding: theme.spacing(2),
@@ -19,23 +21,31 @@ const Item = styled(Paper)(({ theme }) => ({
 export default function SidebarHeader() {
     
     const { axiosRequest } = useAxios()
+    const dispatch = useDispatch()
     const currentUser = useSelector((state: IReduxStore) => state.user.currentUser)
-    
-    const handleNewContact = async () => {
-        const response = await axiosRequest('/contacts', 'POST', { name: 'Hasan' })
-    }
+    const currentlyViewing = useSelector((state: IReduxStore) => state.conversations.currentlyViewing)
 
     return (
-        <Item elevation={0} style={{ backgroundColor: '#202C34', display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
+        <>
+        { currentUser && (
+
+            <Item elevation={0} style={{ backgroundColor: '#202C34', display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
             <div style={{ display: 'flex', alignItems: 'center' }}>
-                <Avatar alt={currentUser.username} src={currentUser.avatar} />
-                <Typography variant="subtitle1" style={{ paddingLeft: '1rem' }}>{currentUser.username}</Typography>
+                { currentlyViewing === 'conversations' ? 
+                    <>
+                    <Avatar alt={currentUser.username} src={currentUser.avatar} />
+                    <Typography variant="subtitle1" style={{ paddingLeft: '1rem' }}>{currentUser.username}</Typography>
+                    </> : 
+                    <KeyboardBackspaceOutlinedIcon style={{ cursor: 'pointer' }}onClick={() => dispatch(changeSidebarViewAction('conversations'))} />
+                }
             </div>
             <div>
-                <PeopleIcon style={{ paddingRight: '1rem'}}/>
-                <MessageIcon style={{ paddingRight: '0.5rem'}} onClick={handleNewContact} />
-                <MoreVertIcon />
+                <PeopleIcon style={{ paddingRight: '1rem', cursor: 'pointer' }} onClick={() => dispatch(changeSidebarViewAction('users'))} />
+                <MessageIcon style={{ paddingRight: '0.5rem', cursor: 'pointer' }} onClick={() => dispatch(changeSidebarViewAction('new-message'))} />
+                <MoreVertIcon style={{ cursor: 'pointer' }} />
             </div>
         </Item>
+        )}
+        </>
     )
 }
