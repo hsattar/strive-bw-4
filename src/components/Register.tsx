@@ -75,7 +75,7 @@ export default function Login() {
         if (!firstName || !lastName || !username || !email || !password || !confirmPassword) setUserError(true)
         if (password !== confirmPassword) setPasswordError(true)
 
-        const response: any = await  axiosRequest('/users', 'POST', userDetails)
+        const response: any = await  axiosRequest('/users/register', 'POST', userDetails)
         if (response.status === 400) console.log('bad request')
         if (response.status === 200) {
             dispatch(userLoginAction())

@@ -6,7 +6,7 @@ export default function useAxios() {
 
     const axiosRequest = async (url: string, method: any, data = {}) => {
         try {
-            return await axios({ baseURL, url, method, data })
+            return await axios({ baseURL, url, method, data, withCredentials: true })
         } catch (error: any) {
             console.error(error)
             return error.toJSON()
