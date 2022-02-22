@@ -26,7 +26,7 @@ export default function AlignItemsList() {
                     ),
                     }}
             />
-            { currentUser.conversations.map((user: any) => <SingleSidebarContact contact={user} /> ) }
+            { currentUser.conversations.map((conversation: any) => <SingleSidebarContact conversation={conversation} /> ) }
         </List>
         )
 

@@ -62,9 +62,9 @@ export default function Login() {
         if (response.status === 401) setInvalidDetails(true)
         if (response.status === 200) {
             dispatch(userLoginAction())
+            setLoading(false)
             navigate('/')
         }
-        setLoading(false)
     }
 
     return (

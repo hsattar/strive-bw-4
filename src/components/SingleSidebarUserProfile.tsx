@@ -4,6 +4,7 @@ import ListItemAvatar from '@mui/material/ListItemAvatar'
 import ListItemText from '@mui/material/ListItemText'
 import Typography from '@mui/material/Typography'
 import { useDispatch } from 'react-redux'
+import useAxios from '../hooks/useAxios'
 
 interface IProps {
     person: any
@@ -12,10 +13,15 @@ interface IProps {
 export default function SingleSidebarUserProfile({ person }: IProps) {
 
     const dispatch = useDispatch()
+    const { axiosRequest } = useAxios()
+
+    const handleNewConversation = async () => {
+        const response = await axiosRequest('/conversations/newConvo', 'POST', { recipientId: person._id })
+    }   
 
     return (
         <>
-        <ListItem alignItems="center" className="sidebar-single-contact">
+        <ListItem alignItems="center" className="sidebar-single-contact" onClick={handleNewConversation}>
             <ListItemAvatar>
             <Avatar alt={person.username} src={person.avatar} />
             </ListItemAvatar>

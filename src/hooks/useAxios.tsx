@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios, { AxiosError } from 'axios'
 
 export default function useAxios() {
     
@@ -8,6 +8,7 @@ export default function useAxios() {
         try {
             return await axios({ baseURL, url, method, data, withCredentials: true })
         } catch (error: any) {
+            // const err = error as AxiosError
             console.error(error)
             return error.toJSON()
         }

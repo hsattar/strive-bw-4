@@ -12,7 +12,7 @@ interface IProps {
 export default function SidebarUserProfiles({ currentlyViewing}: IProps) {
 
     const { axiosRequest } = useAxios()
-    const url = currentlyViewing === 'users' ? '/users' : '/users/me/contacts'
+    const url = currentlyViewing === 'users' ? '/users/everyone-else' : '/users/me/contacts'
 
     const [people, setPeople] = useState<any>(null)
 
