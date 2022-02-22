@@ -35,3 +35,11 @@ body {
 ::-webkit-scrollbar-thumb:hover {
     background: #515a5f;
 }
+
+.sidebar-single-contact:not(:last-child) { 
+    border-bottom: 0.1px solid #515a5f80;
+}
+
+.selected-contact {
+    background-color: #40474B;
+}

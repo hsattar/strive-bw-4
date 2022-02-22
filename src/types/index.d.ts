@@ -12,9 +12,14 @@ interface IUserDetails extends IUserCredentials {
 
 interface IReduxStore {
     user: IReduxStoreUser
+    contacts: IReduxStoreContacts
 }
 
 interface IReduxStoreUser {
     isLoggedIn: boolean
     currentUser: any
+}
+
+interface IReduxStoreContacts {
+    selected: any
 }

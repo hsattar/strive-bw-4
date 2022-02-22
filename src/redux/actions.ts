@@ -6,12 +6,18 @@ import axios from 'axios'
 const { REACT_APP_BE_URL: BASE_URL } = process.env
 
 export const ACTIONS = {
-    USER_LOGIN: 'USER_LOGIN'
+    USER_LOGIN: 'USER_LOGIN',
+    SELECT_CONTACT: 'SELECT_CONTACT'
 }
 
 export const userLoginAction = () => ({
     type: ACTIONS.USER_LOGIN,
 }) 
+
+export const selectContactAction = (contact: any) => ({
+    type: ACTIONS.SELECT_CONTACT,
+    payload: contact
+})
 
 // export const userLoginAction = (userInfo: any): ThunkAction<any, typeof initialState, unknown, AnyAction> => 
 // async dispatch => {

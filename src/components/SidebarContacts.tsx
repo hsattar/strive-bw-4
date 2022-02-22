@@ -11,7 +11,7 @@ export default function AlignItemsList() {
             variant="outlined" 
             size="small" 
             fullWidth 
-            style={{ maxWidth: "90%", marginTop: ".5rem" }}
+            style={{ maxWidth: "90%", marginTop: "0rem" }}
             InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
@@ -20,7 +20,7 @@ export default function AlignItemsList() {
                 ),
               }}
         />
-        { [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map(num => <SingleSidebarContact /> ) }
+        { [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map(num => <SingleSidebarContact contact={num} /> ) }
     </List>
   )
 }
