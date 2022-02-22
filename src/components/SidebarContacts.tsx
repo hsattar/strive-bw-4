@@ -1,34 +1,26 @@
+import { InputAdornment, TextField } from '@mui/material'
 import List from '@mui/material/List'
-import ListItem from '@mui/material/ListItem'
-import Divider from '@mui/material/Divider'
-import ListItemText from '@mui/material/ListItemText'
-import ListItemAvatar from '@mui/material/ListItemAvatar'
-import Avatar from '@mui/material/Avatar'
-import Typography from '@mui/material/Typography'
+import SingleSidebarContact from './SingleSidebarContact'
+import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 
 export default function AlignItemsList() {
   return (
-    <List sx={{ width: '100%', bgcolor: '#121A21' }}>
-      <ListItem alignItems="center">
-        <ListItemAvatar>
-          <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-        </ListItemAvatar>
-        <ListItemText
-          primary={ <Typography color="text.primary">Contact Name</Typography> }
-          secondary={
-              <Typography
-                sx={{ display: 'inline' }}
-                component="span"
-                variant="body2"
-                color="text.primary"
-                textOverflow="ellipsis"
-              >
-                Last Message
-              </Typography>
-          }
+    <List className="sidebar-contacts">
+        <TextField 
+            placeholder="Search"
+            variant="outlined" 
+            size="small" 
+            fullWidth 
+            style={{ maxWidth: "90%", marginTop: ".5rem" }}
+            InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <SearchOutlinedIcon color="disabled" />
+                  </InputAdornment>
+                ),
+              }}
         />
-      </ListItem>
-      {/* <Divider variant="inset" component="li" /> */}
+        { [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map(num => <SingleSidebarContact /> ) }
     </List>
   )
 }

@@ -3,9 +3,9 @@ import SidebarHeader from "./SidebarHeader"
 
 export default function Sidebar() {
     return (
-        <>
+        <div>
         <SidebarHeader />
         <SidebarContacts />
-        </>
+        </div>
     )
 }
