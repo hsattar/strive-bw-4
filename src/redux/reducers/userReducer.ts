@@ -8,6 +8,10 @@ const userReducer = (state = initialState.user, action: AnyAction) => {
             ...state,
             isLoggedIn: true
         }
+        case ACTIONS.ADD_MY_INFO_TO_CURRENT_USER: return {
+            ...state,
+            currentUser: action.payload
+        }
         default: return state
     }
 }

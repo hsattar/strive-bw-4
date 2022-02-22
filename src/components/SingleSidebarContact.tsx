@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { selectContactAction } from '../redux/actions'
 
 interface IProps {
-    contact: number
+    contact: any
 }
 
 export default function SingleSidebarContact({ contact }: IProps) {
