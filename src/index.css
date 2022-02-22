@@ -40,6 +40,11 @@ body {
     border-bottom: 0.1px solid #515a5f80;
 }
 
+.sidebar-single-contact:hover { 
+    cursor: pointer;
+    background-color: #40474B;
+}
+
 .selected-contact {
     background-color: #40474B;
 }

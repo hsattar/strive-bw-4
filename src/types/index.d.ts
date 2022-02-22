@@ -13,6 +13,7 @@ interface IUserDetails extends IUserCredentials {
 interface IReduxStore {
     user: IReduxStoreUser
     contacts: IReduxStoreContacts
+    conversations: IReduxStoreConversations
 }
 
 interface IReduxStoreUser {
@@ -22,4 +23,8 @@ interface IReduxStoreUser {
 
 interface IReduxStoreContacts {
     selected: any
+}
+
+interface IReduxStoreConversations {
+    conversations: any
 }

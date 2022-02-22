@@ -3,7 +3,7 @@ import Paper from '@mui/material/Paper'
 import { styled } from '@mui/material/styles'
 import MoreVertIcon from '@mui/icons-material/MoreVert'
 import MessageIcon from '@mui/icons-material/Message'
-import CircleOutlinedIcon from '@mui/icons-material/CircleOutlined'
+import PeopleIcon from '@mui/icons-material/People';
 import useAxios from '../hooks/useAxios'
  
 const Item = styled(Paper)(({ theme }) => ({
@@ -30,7 +30,7 @@ export default function SidebarHeader() {
                 <Typography variant="subtitle1" style={{ paddingLeft: '1rem' }}>Name</Typography>
             </div>
             <div>
-                <CircleOutlinedIcon style={{ paddingRight: '1rem'}}/>
+                <PeopleIcon style={{ paddingRight: '1rem'}}/>
                 <MessageIcon style={{ paddingRight: '0.5rem'}} onClick={handleNewContact} />
                 <MoreVertIcon />
             </div>

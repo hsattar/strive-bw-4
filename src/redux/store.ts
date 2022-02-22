@@ -12,6 +12,9 @@ export const initialState: IReduxStore = {
     },
     contacts: {
         selected: null
+    },
+    conversations: {
+        conversations: []
     }
 }
 
