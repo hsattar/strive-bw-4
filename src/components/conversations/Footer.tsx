@@ -10,16 +10,18 @@ import Input from '@mui/material/Input';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Toolbar from '@mui/material/Toolbar/Toolbar';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import SendIcon from '@mui/icons-material/Send';
 import * as React from 'react';
 
 
 const theme = createTheme({
     palette: {
-        primary: { main: '#202C34' },
-        secondary: { main: '#0066fg', light: '#0066fg' }
+        primary: { main: '#F7F7F7' },
+        secondary: { main: '#FFB72B'}
     }
 })
-export const Footer: React.FC =  () => {
+export const Footer: React.FC = () => {
+    
     const { register, handleSubmit, formState: { errors } } = useForm<IText>()
     const onSubmit: SubmitHandler<IText> = (data) => {
         console.log(data)
@@ -46,7 +48,7 @@ export const Footer: React.FC =  () => {
                                 </Badge>
                              </IconButton>
                         </Grid>
-                        <Grid item xs={11} onSubmit={handleSubmit(onSubmit)}>
+                        <Grid item xs={11}>
                             <Input
                                 fullWidth
                                 type="search"
@@ -61,9 +63,21 @@ export const Footer: React.FC =  () => {
                                 size="large"
                                 aria-label="show 17 new notifications"
                                 color="inherit"
+                                onClick={handleSubmit(onSubmit)}
                             >
                                 <Badge>
                                     <KeyboardVoiceIcon />
+                                </Badge>
+                            </IconButton>
+                        </Grid>
+                        <Grid item xs={1}>
+                            <IconButton
+                                size="large"
+                                aria-label="show 17 new notifications"
+                                color="inherit"
+                            >
+                                <Badge>
+                                    <SendIcon />
                                 </Badge>
                             </IconButton>
                         </Grid>
