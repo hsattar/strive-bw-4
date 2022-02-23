@@ -77,7 +77,7 @@ export default function Login() {
 
         const response = await  axiosRequest('/users/register', 'POST', userDetails)
         if (response.status === 400) console.log('bad request')
-        if (response.status === 200) {
+        if (response.status === 201) {
             dispatch(userLoginAction())
             navigate('/')
         }

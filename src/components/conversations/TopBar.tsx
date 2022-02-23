@@ -29,7 +29,7 @@ export const TopBar = () => {
                             <Toolbar>
                                 <CardHeader
                                     avatar={
-                                        <Avatar sx={{ bgcolor: red[500] }} src={selectedConversation.avatar} alt={selectedConversation.username} />
+                                        <Avatar src={selectedConversation.avatar} alt={selectedConversation.username} />
                                         }
                                         title={`${selectedConversation.firstName} ${selectedConversation.lastName}`}
                                         subheader={`Last seen ${selectedConversation.lastSeen}`}

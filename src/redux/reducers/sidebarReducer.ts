@@ -16,6 +16,10 @@ const sidebarReducer = (state = initialState.sidebar, action: AnyAction) => {
             ...state,
             allConversations: action.payload
         }
+        case ACTIONS.ADD_ANOTHER_CONVERSATION_TO_CONVERSATION_ARRAY: return {
+            ...state,
+            allConversations: [...state.allConversations ,action.payload]
+        }
         default: return state
     }
 }

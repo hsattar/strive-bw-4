@@ -16,9 +16,12 @@ export default function SidebarConversations() {
     const conversations = useSelector((state: IReduxStore) => state.sidebar.allConversations)
 
     const updateConversations = () => {
-        if (currentUser) {
-            const conversations = currentUser.conversations.length === 0 ? [] : (currentUser.conversations.map(conversation => conversation.members.filter(member => (member._id !== currentUser._id) && (member.username.toLowerCase().includes(searchInput.toLowerCase())))))
-            dispatch(addToConversationArray(conversations[0] || conversations))
+        if (conversations.length === 0) {
+            if (currentUser) {
+                const conversations = currentUser.conversations.length === 0 ? [] : (currentUser.conversations.map(conversation => conversation.members.filter(member => (member._id !== currentUser._id) && (member.username.toLowerCase().includes(searchInput.toLowerCase())))))
+                const conversationUsers = conversations.map(conversation => conversation[0])
+                dispatch(addToConversationArray(conversationUsers))
+            }
         }
     }
 
@@ -26,7 +29,7 @@ export default function SidebarConversations() {
         updateConversations()
     }, [searchInput, currentUser])
 
-    return (
+    return ( 
         <>
         { currentUser && (
         <List className="sidebar-contacts">

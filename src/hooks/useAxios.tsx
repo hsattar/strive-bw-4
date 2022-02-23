@@ -19,7 +19,7 @@ export default function useAxios() {
         response => response,
         async error => {
             const failedRequest = error.config
-            if (error.response.status === 401 && failedRequest.url !== '/users/refreshToken') {
+            if (error.response.status === 401 && failedRequest.url !== '/users/refreshToken' && failedRequest.url !== '/users/login') {
                 await axiosRequest('/users/refreshToken', 'POST')
                 const retryRequest = instance(failedRequest)
                 return retryRequest
