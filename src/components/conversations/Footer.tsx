@@ -52,7 +52,7 @@ export const Footer: React.FC =  () => {
                                 type="search"
                                 multiline
                                 placeholder='Type a message'
-                                color='secondary'
+                                color='primary'
                                 {...register ('text')}
                             />
                         </Grid>

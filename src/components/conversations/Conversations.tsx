@@ -24,7 +24,7 @@ export default function ConvoContainer() {
       {/* CHAT BUBBLES */}
       <div className="convo_wrapper">
         <Container sx={{ display: "column" }}>
-          <Card sx={{ maxWidth: 600, margin: 'normal', m: 1, borderRadius: 3 }}>
+          <Card sx={{ maxWidth: 600, bgcolor:'#202C33', margin: 'normal', m: 1, borderRadius: 3 }}>
               <CardContent>
                 <Typography variant="body1" color="text.primary">
                   This impressive paella is a perfect party dish and a fun meal to cook
@@ -35,7 +35,7 @@ export default function ConvoContainer() {
             <Typography m={2} variant="caption" color="text.secondary">09.02</Typography>
           </Card>
           <Box sx={{display: 'flex', justifyContent: 'flex-end', m: 1, }} >
-            <Card sx={{ maxWidth: 600, bgcolor:'', borderRadius: 3}}>
+            <Card sx={{ maxWidth: 600, bgcolor:'#005C4B', borderRadius: 3}}>
               <CardContent>
                 <Typography variant="body1" color="text.primary">
                   This impressive paella is a perfect party dish and a fun meal to cook
