@@ -1,20 +1,18 @@
 import AttachFileIcon from '@mui/icons-material/AttachFile';
 import InsertEmoticonIcon from '@mui/icons-material/InsertEmoticon';
 import KeyboardVoiceIcon from '@mui/icons-material/KeyboardVoice';
+import SendIcon from '@mui/icons-material/Send';
+import { TextField } from '@mui/material';
 import AppBar from '@mui/material/AppBar/AppBar';
 import Badge from '@mui/material/Badge';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import IconButton from '@mui/material/IconButton';
-import Input from '@mui/material/Input';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Toolbar from '@mui/material/Toolbar/Toolbar';
-import { SubmitHandler, useForm } from 'react-hook-form';
-import SendIcon from '@mui/icons-material/Send';
 import * as React from 'react';
-import { TextField } from '@mui/material';
-import { io } from 'socket.io-client'
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
+import { io } from 'socket.io-client';
 
 const theme = createTheme({
     palette: {
@@ -28,7 +26,7 @@ const theme = createTheme({
 const { REACT_APP_BE_URL } = process.env
 const socket = io(REACT_APP_BE_URL!, { transports: ['websocket'] })
 
-export const Footer: React.FC = () => {
+export const Footer = () => {
 
     const [message, setMessage] = useState('')
 
