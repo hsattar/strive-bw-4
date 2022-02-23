@@ -32,11 +32,7 @@ export default function ConvoContainer() {
                   if you like.
                 </Typography>
               </CardContent>
-              <CardHeader
-                display="flex"
-                justifiedContent="flex-end"
-                subheader="09.00"
-              />
+            <Typography m={2} variant="caption" color="text.secondary">09.02</Typography>
           </Card>
           <Box sx={{display: 'flex', justifyContent: 'flex-end', m: 1, }} >
             <Card sx={{ maxWidth: 600, bgcolor:'', borderRadius: 3}}>
@@ -47,9 +43,7 @@ export default function ConvoContainer() {
                   if you like.
                 </Typography>
               </CardContent>
-              <CardHeader
-                subheader="09.02"
-              />
+              <Typography m={2} variant="caption" color="text.secondary">09.02</Typography>
             </Card>
           </Box>
         </Container>
