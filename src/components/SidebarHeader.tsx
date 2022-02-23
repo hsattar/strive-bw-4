@@ -9,7 +9,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import KeyboardBackspaceOutlinedIcon from '@mui/icons-material/KeyboardBackspaceOutlined';
 import { changeSidebarViewAction } from '../redux/actions'
  
-const Item = styled(Paper)(({ theme }: any) => ({
+const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
     ...theme.typography.body2,
     padding: theme.spacing(2),

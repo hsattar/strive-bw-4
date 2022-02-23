@@ -10,7 +10,7 @@ import { useState, FormEvent } from 'react'
 import useAxios from '../hooks/useAxios' 
 import { useDispatch } from 'react-redux'
 
-const Item = styled(Paper)(({ theme }: any) => ({
+const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
     ...theme.typography.body2,
     padding: theme.spacing(2),
@@ -75,7 +75,7 @@ export default function Login() {
         if (!firstName || !lastName || !username || !email || !password || !confirmPassword) setUserError(true)
         if (password !== confirmPassword) setPasswordError(true)
 
-        const response: any = await  axiosRequest('/users/register', 'POST', userDetails)
+        const response = await  axiosRequest('/users/register', 'POST', userDetails)
         if (response.status === 400) console.log('bad request')
         if (response.status === 200) {
             dispatch(userLoginAction())
@@ -200,6 +200,6 @@ export default function Login() {
     )
 }
 
-function userLoginAction(): any {
+function userLoginAction() {
     throw new Error('Function not implemented.')
 }

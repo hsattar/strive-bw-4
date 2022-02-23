@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux'
 import useAxios from '../hooks/useAxios'
 
 interface IProps {
-    person: any
+    person: IUser
 }
 
 export default function SingleSidebarUserProfile({ person }: IProps) {

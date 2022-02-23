@@ -14,12 +14,14 @@ export default function SidebarUserProfiles({ view }: IProps) {
     const [email, setEmail] = useState('')
     const { axiosRequest } = useAxios()
 
-    const [people, setPeople] = useState<any>(null)
+    const [people, setPeople] = useState<IUser[] | null>(null)
 
     const fetchPeople = async () => {
         const response = await axiosRequest('/users/me/contacts', 'GET')
         console.log(response)
-        setPeople(response.data)
+        if (response.data) {
+            setPeople(response.data)
+        }
     }
 
     const handleSubmit = async (e: FormEvent) => {
@@ -71,7 +73,7 @@ export default function SidebarUserProfiles({ view }: IProps) {
                             ),
                         }}
                         />
-                        { people.map((person: any) => <SingleSidebarUserProfile key={person} person={person} />)}
+                        { people.map(person => <SingleSidebarUserProfile key={person._id} person={person} />)}
                         </>
                     )
                 }

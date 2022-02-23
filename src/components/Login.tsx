@@ -12,7 +12,7 @@ import useAxios from '../hooks/useAxios'
 import { useDispatch } from 'react-redux'
 import { userLoginAction } from '../redux/actions'
  
-const Item = styled(Paper)(({ theme }: any) => ({
+const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
     ...theme.typography.body2,
     padding: theme.spacing(2),
@@ -58,13 +58,13 @@ export default function Login() {
         if (!userCredentials.email || !userCredentials.password) setUserError(true)
 
         setLoading(true)
-        const response: any = await axiosRequest('/users/login', 'POST', userCredentials)
+        const response = await axiosRequest('/users/login', 'POST', userCredentials)
         if (response.status === 401) setInvalidDetails(true)
         if (response.status === 200) {
             dispatch(userLoginAction())
-            setLoading(false)
             navigate('/')
         }
+        setLoading(false)
     }
 
     return (

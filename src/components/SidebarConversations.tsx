@@ -17,7 +17,7 @@ export default function SidebarConversations() {
 
     const updateConversations = () => {
         if (currentUser) {
-            const conversations = currentUser.conversations.length === 0 ? [] : (currentUser.conversations.map((conversation: any) => conversation.members.filter((member: any) => (member._id !== currentUser._id) && (member.username.toLowerCase().includes(searchInput.toLowerCase())))))
+            const conversations = (currentUser.conversations.length === 0 && (typeof currentUser.conversations !== 'string')) ? [] : (currentUser.conversations.map((conversation: any) => conversation.members.filter((member: any) => (member._id !== currentUser._id) && (member.username.toLowerCase().includes(searchInput.toLowerCase())))))
             dispatch(addToConversationArray(conversations[0] || conversations))
         }
     }
@@ -46,7 +46,6 @@ export default function SidebarConversations() {
                     ),
                 }}
             />
-            {/* { currentUser.conversations.map((conversation: any) => <SingleSidebarConversation conversation={conversation} /> ) } */}
             { conversations.map((conversation: any) => <SingleSidebarConversation conversation={conversation} /> ) }
         </List>
         )}
