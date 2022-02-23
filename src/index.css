@@ -5,6 +5,10 @@ body {
     overflow: hidden;
 }
 
+.light-theme {
+    filter: invert(1) hue-rotate(180deg);
+}
+
 .sidebar-contacts {
     width: 100%;
     background-color: #121A21;

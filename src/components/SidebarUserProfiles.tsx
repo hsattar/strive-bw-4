@@ -18,7 +18,6 @@ export default function SidebarUserProfiles({ view }: IProps) {
 
     const fetchPeople = async () => {
         const response = await axiosRequest('/users/me/contacts', 'GET')
-        console.log(response)
         if (response.data) {
             setPeople(response.data)
         }

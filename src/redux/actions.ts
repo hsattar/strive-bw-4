@@ -3,8 +3,10 @@ export const ACTIONS = {
     SELECTED_CONVERSATION: 'SELECTED_CONVERSATION',
     ADD_MY_INFO_TO_CURRENT_USER: 'ADD_MY_INFO_TO_CURRENT_USER',
     CHANGE_SIDEBAR_VIEW: 'CHANGE_SIDEBAR_VIEW',
-    ADD_TO_CONVERSATIONS_ARRAY: 'ADD_TO_CONVERSATIONS_ARRAY'
-}
+    ADD_TO_CONVERSATIONS_ARRAY: 'ADD_TO_CONVERSATIONS_ARRAY',
+    LOG_OUT_USER: 'LOG_OUT_USER',
+    CHANGE_USER_THEME: 'CHANGE_USER_THEME'
+}   
 
 export const userLoginAction = () => ({
     type: ACTIONS.USER_LOGIN,
@@ -28,4 +30,13 @@ export const changeSidebarViewAction = (view: string) => ({
 export const addToConversationArray = (conversations: IUser[]) => ({
     type: ACTIONS.ADD_TO_CONVERSATIONS_ARRAY,
     payload: conversations
+})
+
+export const logOutUserAction = () => ({
+    type: ACTIONS.LOG_OUT_USER
+})
+
+export const changeUserThemeAction = (theme: string) => ({
+    type: ACTIONS.CHANGE_USER_THEME,
+    payload: theme
 })

@@ -5,6 +5,7 @@ import Login from './components/Login'
 import NotFound from './components/NotFound'
 import PrivateRoute from './components/PrivateRoute'
 import Register from './components/Register'
+import { useSelector } from 'react-redux'
 
 export default function App() {
 
@@ -14,16 +15,19 @@ export default function App() {
     },
   })
 
+  const userTheme = useSelector((state: IReduxStore) => state.user.theme)
+
   return (
     <ThemeProvider theme={theme}>
       <Router>
+        <div className={ userTheme === 'light' ? 'light-theme' : '' }> 
         <Routes>
-          {/* <Route path="/"  element={ <Home /> } /> */}
           <Route path="/"  element={ <PrivateRoute><Home /></PrivateRoute> } />
           <Route path="/login"  element={ <Login /> } />
           <Route path="/register"  element={ <Register /> } />
           <Route path="*" element={ <NotFound /> }/>
         </Routes>
+      </div>
       </Router>
     </ThemeProvider>
   )

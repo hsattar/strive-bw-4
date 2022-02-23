@@ -48,6 +48,7 @@ interface IConversation {
 interface IReduxStoreUser {
     isLoggedIn: boolean
     currentUser: IUser | null
+    theme: 'dark' | 'light'
 }
 
 interface IText {
@@ -57,7 +58,7 @@ interface IText {
 
 interface IReduxStoreSidebar {
     conversationSelected: IUser | null
-    currentlyViewing: string
+    currentlyViewing: 'conversations' | 'users' | 'new-message' | 'settings'
     allConversations: IUser[]
 }
 

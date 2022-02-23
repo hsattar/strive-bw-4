@@ -9,6 +9,7 @@ export const initialState: IReduxStore = {
     user: {
         isLoggedIn: false,
         currentUser: null,
+        theme: 'dark'
     },
     sidebar: {
         conversationSelected: null,

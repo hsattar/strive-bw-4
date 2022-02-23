@@ -7,6 +7,7 @@ import PeopleIcon from '@mui/icons-material/People'
 import useAxios from '../hooks/useAxios'
 import { useSelector, useDispatch } from 'react-redux'
 import KeyboardBackspaceOutlinedIcon from '@mui/icons-material/KeyboardBackspaceOutlined';
+import SettingsIcon from '@mui/icons-material/Settings';
 import { changeSidebarViewAction } from '../redux/actions'
  
 const Item = styled(Paper)(({ theme }) => ({
@@ -40,9 +41,9 @@ export default function SidebarHeader() {
                 }
             </div>
             <div>
-                <PeopleIcon style={{ paddingRight: '0.5rem', cursor: 'pointer' }} onClick={() => dispatch(changeSidebarViewAction('users'))} />
-                <MessageIcon style={{ paddingRight: '0.5rem', cursor: 'pointer' }} onClick={() => dispatch(changeSidebarViewAction('new-message'))} />
-                <MoreVertIcon style={{ cursor: 'pointer' }} />
+                <PeopleIcon style={{ paddingRight: '1rem', cursor: 'pointer' }} onClick={() => dispatch(changeSidebarViewAction('users'))} />
+                <MessageIcon style={{ paddingRight: '1rem', cursor: 'pointer' }} onClick={() => dispatch(changeSidebarViewAction('new-message'))} />
+                <SettingsIcon style={{ cursor: 'pointer' }} onClick={() => dispatch(changeSidebarViewAction('settings'))} />
             </div>
         </Item>
         )}
