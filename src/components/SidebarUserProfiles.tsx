@@ -5,19 +5,14 @@ import { useEffect, useState } from 'react'
 import useAxios from '../hooks/useAxios'
 import SingleSidebarUserProfile from './SingleSidebarUserProfile'
 
-interface IProps {
-    currentlyViewing: 'new-message' | 'users'    
-}
-
-export default function SidebarUserProfiles({ currentlyViewing}: IProps) {
+export default function SidebarUserProfiles() {
 
     const { axiosRequest } = useAxios()
-    const url = currentlyViewing === 'users' ? '/users/everyone-else' : '/users/me/contacts'
 
     const [people, setPeople] = useState<any>(null)
 
     const fetchPeople = async () => {
-        const response = await axiosRequest(url, 'GET')
+        const response = await axiosRequest('/users/me/contacts', 'GET')
         console.log(response)
         setPeople(response.data)
     }

@@ -23,7 +23,7 @@ export default function SidebarHeader() {
     const { axiosRequest } = useAxios()
     const dispatch = useDispatch()
     const currentUser = useSelector((state: IReduxStore) => state.user.currentUser)
-    const currentlyViewing = useSelector((state: IReduxStore) => state.conversations.currentlyViewing)
+    const currentlyViewing = useSelector((state: IReduxStore) => state.sidebar.currentlyViewing)
 
     return (
         <>
@@ -40,7 +40,6 @@ export default function SidebarHeader() {
                 }
             </div>
             <div>
-                <PeopleIcon style={{ paddingRight: '1rem', cursor: 'pointer' }} onClick={() => dispatch(changeSidebarViewAction('users'))} />
                 <MessageIcon style={{ paddingRight: '0.5rem', cursor: 'pointer' }} onClick={() => dispatch(changeSidebarViewAction('new-message'))} />
                 <MoreVertIcon style={{ cursor: 'pointer' }} />
             </div>

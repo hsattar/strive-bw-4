@@ -1,18 +1,17 @@
-import SidebarContacts from "./SidebarContacts"
+import SidebarConversations from "./SidebarConversations"
 import SidebarHeader from "./SidebarHeader"
 import { useSelector } from "react-redux"
 import SidebarUserProfiles from "./SidebarUserProfiles"
 
 export default function Sidebar() {
 
-    const currentlyViewing = useSelector((state: IReduxStore) => state.conversations.currentlyViewing)
+    const currentlyViewing = useSelector((state: IReduxStore) => state.sidebar.currentlyViewing)
 
     return (
         <>
         <SidebarHeader />
-        { currentlyViewing === 'conversations' &&  <SidebarContacts /> }
-        { currentlyViewing === 'users' &&  <SidebarUserProfiles currentlyViewing="users" /> }
-        { currentlyViewing === 'new-message' &&  <SidebarUserProfiles currentlyViewing="new-message" /> }
+        { currentlyViewing === 'conversations' &&  <SidebarConversations /> }
+        { currentlyViewing === 'new-message' &&  <SidebarUserProfiles /> }
         </>
     )
 }
