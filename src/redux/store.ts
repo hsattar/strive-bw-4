@@ -1,6 +1,6 @@
 import { applyMiddleware, combineReducers, compose, createStore } from "redux"
 import thunk from 'redux-thunk'
-import conversationsReducer from "./reducers/conversationsReducer"
+import sidebarReducer from "./reducers/sidebarReducer"
 import userReducer from "./reducers/userReducer"
 
 const composeSafely = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
@@ -10,16 +10,16 @@ export const initialState: IReduxStore = {
         isLoggedIn: false,
         currentUser: null,
     },
-    conversations: {
-        selected: null,
+    sidebar: {
+        conversationSelected: null,
         currentlyViewing: 'conversations',
-        all: []
+        allConversations: []
     }
 }
 
 const rootReducer = combineReducers({
     user: userReducer,
-    conversations: conversationsReducer
+    sidebar: sidebarReducer
 })
 
 export const storeConfig = createStore(rootReducer, initialState, composeSafely(applyMiddleware(thunk)))

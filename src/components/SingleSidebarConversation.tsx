@@ -3,19 +3,31 @@ import ListItem from '@mui/material/ListItem'
 import ListItemAvatar from '@mui/material/ListItemAvatar'
 import ListItemText from '@mui/material/ListItemText'
 import Typography from '@mui/material/Typography'
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { selectConversationAction } from '../redux/actions'
+import { addToConversationArray, selectConversationAction } from '../redux/actions'
 
 interface IProps {
     conversation: any
 }
 
-export default function SingleSidebarContact({ conversation }: IProps) {
+export default function SingleSidebarConversation({ conversation }: IProps) {
 
     const dispatch = useDispatch()
-    const selectedContact = useSelector((state: IReduxStore) => state.conversations.selected)
+    const selectedConversation = useSelector((state: IReduxStore) => state.sidebar.conversationSelected)
+    const currentUser = useSelector((state: IReduxStore) => state.user.currentUser)
+    const [selected, setSelected] = useState(false) 
 
-    const selected = selectedContact === conversation
+    const selectConvo = () => {
+        if (selectedConversation) {
+            setSelected(selectedConversation._id === conversation._id)
+        }
+    } 
+
+    useEffect(() => {
+        selectConvo()
+    }, [selectedConversation])
+
 
     return (
         <>
