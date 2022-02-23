@@ -5,10 +5,10 @@ import ListItemText from '@mui/material/ListItemText'
 import Typography from '@mui/material/Typography'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { addToConversationArray, selectConversationAction } from '../redux/actions'
+import { selectConversationAction } from '../redux/actions'
 
 interface IProps {
-    conversation: any
+    conversation: IUser
 }
 
 export default function SingleSidebarConversation({ conversation }: IProps) {

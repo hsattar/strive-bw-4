@@ -59,12 +59,15 @@ export default function Login() {
 
         setLoading(true)
         const response = await axiosRequest('/users/login', 'POST', userCredentials)
-        if (response.status === 401) setInvalidDetails(true)
+        if (response.status === 401) {
+            setInvalidDetails(true)
+            setLoading(false)
+        }
         if (response.status === 200) {
             dispatch(userLoginAction())
+            setLoading(false)
             navigate('/')
         }
-        setLoading(false)
     }
 
     return (
