@@ -40,6 +40,7 @@ export default function SidebarHeader() {
                 }
             </div>
             <div>
+                <PeopleIcon style={{ paddingRight: '0.5rem', cursor: 'pointer' }} onClick={() => dispatch(changeSidebarViewAction('users'))} />
                 <MessageIcon style={{ paddingRight: '0.5rem', cursor: 'pointer' }} onClick={() => dispatch(changeSidebarViewAction('new-message'))} />
                 <MoreVertIcon style={{ cursor: 'pointer' }} />
             </div>

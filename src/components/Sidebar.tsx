@@ -11,7 +11,8 @@ export default function Sidebar() {
         <>
         <SidebarHeader />
         { currentlyViewing === 'conversations' &&  <SidebarConversations /> }
-        { currentlyViewing === 'new-message' &&  <SidebarUserProfiles /> }
+        { currentlyViewing === 'new-message' &&  <SidebarUserProfiles view='new-message' /> }
+        { currentlyViewing === 'users' &&  <SidebarUserProfiles view='users' /> }
         </>
     )
 }

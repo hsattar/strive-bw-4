@@ -35,7 +35,7 @@ export default function SingleSidebarUserProfile({ person }: IProps) {
                     color="text.primary"
                     textOverflow="ellipsis"
                 >
-                    Status
+                    {person.status}
                 </Typography>
             }
             />

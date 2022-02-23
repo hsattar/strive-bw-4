@@ -23,7 +23,7 @@ export default function ConvoContainer() {
 
       {/* CHAT BUBBLES */}
       <div className="convo_wrapper">
-        <Container sx={{ display: "column" }}>
+        {/* <Container sx={{ display: "column" }}>
           <Card sx={{ maxWidth: 600, bgcolor:'#202C33', margin: 'normal', m: 1, borderRadius: 3 }}>
               <CardContent>
                 <Typography variant="body1" color="text.primary">
@@ -46,7 +46,7 @@ export default function ConvoContainer() {
               <Typography m={2} variant="caption" color="text.secondary">09.02</Typography>
             </Card>
           </Box>
-        </Container>
+        </Container> */}
       </div>
 
       {/* TEXT INPUT */}
