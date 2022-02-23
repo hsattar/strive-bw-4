@@ -12,12 +12,13 @@ import Toolbar from '@mui/material/Toolbar/Toolbar';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import SendIcon from '@mui/icons-material/Send';
 import * as React from 'react';
-
+import { TextField } from '@mui/material';
 
 const theme = createTheme({
     palette: {
-        primary: { main: '#F7F7F7' },
-        secondary: { main: '#FFB72B'}
+        primary: { main: '#202C34' },
+        secondary: { main: '#536169'},
+        mode: 'dark'
     }
 })
 export const Footer: React.FC = () => {
@@ -29,32 +30,33 @@ export const Footer: React.FC = () => {
     return (
     <ThemeProvider theme={theme}>
         <Box>
-            <AppBar position='static'>
+            <AppBar position='static' style={{ backgroundColor: '#202C34'}}>
                     <Toolbar>
                         <Grid item xs={2}>
                             <IconButton
                                 size="large"
                                 aria-label="account of current user"
                                 aria-haspopup="true"
-                                color="inherit"
+                                color="secondary"
                                 >
                                  <Badge>
                                      <InsertEmoticonIcon />
                                 </Badge>
                              </IconButton>
-                            <IconButton size="large"color="inherit">
+                            <IconButton size="large"color="secondary">
                                 <Badge>
-                                    <AttachFileIcon />
+                                    <AttachFileIcon color="secondary" />
                                 </Badge>
                              </IconButton>
                         </Grid>
                         <Grid item xs={11}>
-                            <Input
+                            <TextField
                                 fullWidth
+                                variant="outlined"
                                 type="search"
                                 multiline
                                 placeholder='Type a message'
-                                color='primary'
+                                // color="#C8CED0"
                                 {...register ('text')}
                             />
                         </Grid>
@@ -62,7 +64,7 @@ export const Footer: React.FC = () => {
                             <IconButton
                                 size="large"
                                 aria-label="show 17 new notifications"
-                                color="inherit"
+                                color="secondary"
                                 onClick={handleSubmit(onSubmit)}
                             >
                                 <Badge>
@@ -74,7 +76,7 @@ export const Footer: React.FC = () => {
                             <IconButton
                                 size="large"
                                 aria-label="show 17 new notifications"
-                                color="inherit"
+                                color="secondary"
                             >
                                 <Badge>
                                     <SendIcon />

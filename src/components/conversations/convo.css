@@ -1,24 +1,26 @@
 /** @format */
 
 .convo_wrapper {
-	height: calc(100vh - 50px);
+	/* height: calc(100vh - 50px); */
 	background-color: #5a7180;
 	height: 100vh;
+	overflow-y: scroll;
 	scrollbar-width: normal;
-	scrollbar-color: white;
+	/* scrollbar-color: white; */
+	background-image: url('../../assets/convo-bg.png');
 }
 ::-webkit-scrollbar {
 	width: 10px;
 }
 
 ::-webkit-scrollbar-track {
-	background: #f1f1f1;
+	background: #f1f1f100;
 }
 
 ::-webkit-scrollbar-thumb {
-	background: #888;
+	background: rgba(136, 136, 136, 0.075);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-	background: #555;
+	background: rgba(85, 85, 85, 0.247);
 }

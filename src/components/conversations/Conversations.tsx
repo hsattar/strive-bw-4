@@ -16,7 +16,7 @@ export default function ConvoContainer() {
       sx={{
         display: 'flex',
         flexDirection: 'column',
-        flexGrow: 1
+        flexGrow: 1, 
       }}>
       {/* TOP BAR */}
       <TopBar />
