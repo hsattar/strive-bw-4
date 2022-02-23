@@ -10,7 +10,7 @@ import { useState, FormEvent } from 'react'
 import useAxios from '../hooks/useAxios' 
 import { useDispatch } from 'react-redux'
 
-const Item = styled(Paper)(({ theme }) => ({
+const Item = styled(Paper)(({ theme }: any) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
     ...theme.typography.body2,
     padding: theme.spacing(2),

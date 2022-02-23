@@ -1,3 +1,50 @@
 body {
     background-color: #1A2027;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.sidebar-contacts {
+    width: 100%;
+    background-color: #121A21;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 88vh;
+    max-height: 88vh;
+    overflow-y: scroll;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+}
+  
+  /* Track */
+::-webkit-scrollbar-track {
+    background: #121A21;
+}
+  
+  /* Handle */
+::-webkit-scrollbar-thumb {
+    background: #40474B;
+}
+  
+  /* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #515a5f;
+}
+
+.sidebar-single-contact:not(:last-child) { 
+    border-bottom: 0.1px solid #515a5f80;
+}
+
+.sidebar-single-contact:hover { 
+    cursor: pointer;
+    background-color: #40474B;
+}
+
+.selected-contact {
+    background-color: #40474B;
 }

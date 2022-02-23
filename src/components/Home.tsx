@@ -1,6 +1,6 @@
-import { Grid } from "@mui/material";
-import Conversations from "./conversations/Conversations";
-import Sidebar from "./Sidebar";
+import { Grid } from "@mui/material"
+import Conversations from "./conversations/Conversations"
+import Sidebar from "./Sidebar"
 
 export default function Home() {
   return (

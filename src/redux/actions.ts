@@ -1,27 +1,25 @@
-import { AnyAction } from "redux"
-import { ThunkAction } from "redux-thunk"
-import { initialState } from "./store"
-import axios from 'axios'
-
-const { REACT_APP_BE_URL: BASE_URL } = process.env
-
 export const ACTIONS = {
-    USER_LOGIN: 'USER_LOGIN'
+    USER_LOGIN: 'USER_LOGIN',
+    SELECTED_CONVERSATION: 'SELECTED_CONVERSATION',
+    ADD_MY_INFO_TO_CURRENT_USER: 'ADD_MY_INFO_TO_CURRENT_USER',
+    CHANGE_SIDEBAR_VIEW: 'CHANGE_SIDEBAR_VIEW'
 }
 
 export const userLoginAction = () => ({
     type: ACTIONS.USER_LOGIN,
 }) 
 
-// export const userLoginAction = (userInfo: any): ThunkAction<any, typeof initialState, unknown, AnyAction> => 
-// async dispatch => {
-//     try {
-//         const { data } = await axios.post(`${BASE_URL}/users/login`, userInfo)
-//         dispatch({
-//             type: ACTIONS.USER_LOGIN,
-//             payload: data
-//         })
-//     } catch (error) {
-//         console.log(error)
-//     }
-// }
+export const selectConversationAction = (contact: any) => ({
+    type: ACTIONS.SELECTED_CONVERSATION,
+    payload: contact
+})
+
+export const addMyInfoToCurentUser = (myInfo: IUser) => ({
+    type: ACTIONS.ADD_MY_INFO_TO_CURRENT_USER,
+    payload: myInfo
+})
+
+export const changeSidebarViewAction = (view: string) => ({
+    type: ACTIONS.CHANGE_SIDEBAR_VIEW,
+    payload: view
+})

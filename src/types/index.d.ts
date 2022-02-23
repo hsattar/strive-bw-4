@@ -12,6 +12,7 @@ interface IUserDetails extends IUserCredentials {
 
 interface IReduxStore {
     user: IReduxStoreUser
+    conversations: IReduxStoreConversations
 }
 
 interface IReduxStoreUser {
@@ -21,4 +22,25 @@ interface IReduxStoreUser {
 
 interface IText {
     text: string
+    currentUser: IUser | null
+}
+
+interface IReduxStoreConversations {
+    selected: any
+    currentlyViewing: string
+    all: any
+}
+
+interface IUser {
+    _id: string,
+    username: string
+    email: string
+    password: string
+    firstName: string
+    lastName: string
+    contacts: string[]
+    conversations: string[]
+    avatar: string
+    refreshJWTs: string[]
+    filename: string
 }
