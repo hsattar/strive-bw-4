@@ -18,3 +18,7 @@ interface IReduxStoreUser {
     isLoggedIn: boolean
     currentUser: any
 }
+
+interface IText {
+    text: string
+}

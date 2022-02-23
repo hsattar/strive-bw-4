@@ -1,5 +1,5 @@
 import { Grid } from "@mui/material";
-import Messages from "./Messages";
+import ConvoContainer from "./conversations/ConvoContainer";
 import Sidebar from "./Sidebar";
 
 export default function Home() {
@@ -9,7 +9,7 @@ export default function Home() {
         <Sidebar />
       </Grid>
       <Grid item xs={9}>
-        <Messages />
+        <ConvoContainer />
       </Grid>
     </Grid>
   )

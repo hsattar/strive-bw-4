@@ -1,0 +1,30 @@
+/** @format */
+
+.convo_wrapper {
+	/* height: calc(100vh - 50px); */
+	background-color: #5a7180;
+	height: 100vh;
+}
+.convo_container {
+	height: 100%;
+	scrollbar-width: normal;
+	scrollbar-color: white;
+}
+::-webkit-scrollbar {
+	width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+	background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+	background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+	background: #555;
+}
