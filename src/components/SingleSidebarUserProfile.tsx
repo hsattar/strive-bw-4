@@ -43,5 +43,3 @@ export default function SingleSidebarUserProfile({ person }: IProps) {
         </>
     )
 }
-
-// #40474B

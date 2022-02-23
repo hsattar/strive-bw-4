@@ -15,9 +15,25 @@ interface IReduxStore {
     sidebar: IReduxStoreConversations
 }
 
+interface IUser {
+    _id:           string
+    username:      string
+    email:         string
+    avatar:        string
+    firstName:     string
+    lastName:      string
+    contacts:      string[]
+    conversations: string[]
+    status:        string
+    lastSeen:      date
+    createdAt:     date
+    updatedAt:     date
+}
+
+
 interface IReduxStoreUser {
     isLoggedIn: boolean
-    currentUser: any
+    currentUser: IUser | null
 }
 
 interface IText {
@@ -26,9 +42,9 @@ interface IText {
 }
 
 interface IReduxStoreSidebar {
-    conversationSelected: any
+    conversationSelected: IUser | null
     currentlyViewing: string
-    all: any
+    all: IUser[]
 }
 
 interface IUser {

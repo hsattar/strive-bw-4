@@ -10,7 +10,7 @@ export const userLoginAction = () => ({
     type: ACTIONS.USER_LOGIN,
 }) 
 
-export const selectConversationAction = (contact: any) => ({
+export const selectConversationAction = (contact: IUser) => ({
     type: ACTIONS.SELECTED_CONVERSATION,
     payload: contact
 })
@@ -25,7 +25,7 @@ export const changeSidebarViewAction = (view: string) => ({
     payload: view
 })
 
-export const addToConversationArray = (conversations: any) => ({
+export const addToConversationArray = (conversations: IUser[]) => ({
     type: ACTIONS.ADD_TO_CONVERSATIONS_ARRAY,
     payload: conversations
 })
