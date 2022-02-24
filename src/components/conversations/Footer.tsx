@@ -36,8 +36,8 @@ export const Footer = () => {
 
     const handleSendMessage = (e: React.FormEvent) => {
         e.preventDefault()
-        socket.emit('sendMessage', ({ messageContent: message, conversationId, senderId }))
-        dispatch(addMessageToConversationAction({ messageContent: message, senderId } as IMessage))
+        socket.emit('sendMessage', ({ messageContent: message, conversationId, senderId, sentAt: Date.now() }))
+        dispatch(addMessageToConversationAction({ messageContent: message, senderId, sentAt: Date.now() } as IMessage))
         setMessage('')
     }
 
@@ -47,10 +47,10 @@ export const Footer = () => {
         })
         socket.emit('newConnection', { room: conversationId || 'public' })
 
-        socket.on('receiveMessage', ({ messageContent, senderId }) => {
+        socket.on('receiveMessage', ({ messageContent, senderId, sentAt }) => {
             console.log('new message received!')
             console.log(message)
-            dispatch(addMessageToConversationAction({ messageContent, senderId }))
+            dispatch(addMessageToConversationAction({ messageContent, senderId, sentAt }))
         })
     }, [])
 

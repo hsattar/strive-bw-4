@@ -1,5 +1,7 @@
 import axios, { AxiosError } from 'axios'
 
+const isAxiosError = (e: Error): e is AxiosError => e.hasOwnProperty('isAxiosError')
+
 export default function useAxios() {
 
     const { REACT_APP_BE_URL: baseURL } = process.env
@@ -10,7 +12,10 @@ export default function useAxios() {
             return await instance({ baseURL, url, method, data, withCredentials: true })
         } catch (error: any) {
             // const err = error as AxiosError
-            console.error(error)
+            // if (isAxiosError(error)) {
+            //     console.error(error)
+            // } else console.error(error)
+
             return error.toJSON()
         }
     }

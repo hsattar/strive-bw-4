@@ -41,8 +41,7 @@ interface IMessage {
     // image?: string
     messageContent: string
     // _id: string
-    // createdAt: date
-    // updatedAt: date
+    sentAt: date
 }
 
 interface IReduxStoreUser {
