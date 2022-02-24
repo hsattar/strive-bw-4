@@ -6,7 +6,7 @@ import useAxios from '../hooks/useAxios'
 import SingleSidebarUserProfile from './SingleSidebarUserProfile'
 
 interface IProps {
-    view: 'users'| 'new-message'
+    view: 'users'| 'new-message' | 'empty-convo'
 }
 
 export default function SidebarUserProfiles({ view }: IProps) {
@@ -32,12 +32,16 @@ export default function SidebarUserProfiles({ view }: IProps) {
         fetchPeople()
     }, [])
 
+    if (view === 'empty-convo') return (
+        <List className="sidebar-contacts" style={{ padding: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <Typography style={{  color: '#e1e1e1' }}>You Have No Conversations</Typography>
+        </List>
+    )
+
     return (
         <>
-        { people && (
             <List className="sidebar-contacts">
-                {
-                    view === 'users' ? (
+                { view === 'users' && (
             <form onSubmit={handleSubmit}>
             <TextField 
                 placeholder="Add New Contact"
@@ -56,7 +60,8 @@ export default function SidebarUserProfiles({ view }: IProps) {
                 }}
                 />
                 </form>
-                    ) : (
+                    ) }
+                    { view === 'new-message' && (
                         <>
                         <TextField 
                         placeholder="Search Contacts"
@@ -72,12 +77,11 @@ export default function SidebarUserProfiles({ view }: IProps) {
                             ),
                         }}
                         />
-                        { people.map(person => <SingleSidebarUserProfile key={person._id} person={person} />)}
+                        { people && people.map(person => <SingleSidebarUserProfile key={person._id} person={person} />)}
                         </>
                     )
                 }
         </List>
-        )}
         </>
         )
 }

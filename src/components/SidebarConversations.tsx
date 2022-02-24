@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useEffect, useState } from 'react'
 import useAxios from '../hooks/useAxios'
 import { addToConversationArray } from '../redux/actions'
+import SidebarUserProfiles from './SidebarUserProfiles'
 
 export default function SidebarConversations() {
 
@@ -33,7 +34,8 @@ export default function SidebarConversations() {
         <>
         { currentUser && (
         <List className="sidebar-contacts">
-            <TextField 
+            { conversations.length === 0 && <SidebarUserProfiles view="empty-convo" /> }
+            {conversations.length > 0 && <TextField 
                 placeholder="Search"
                 variant="outlined" 
                 size="small" 
@@ -48,8 +50,8 @@ export default function SidebarConversations() {
                         </InputAdornment>
                     ),
                 }}
-            />
-            { conversations.map(conversation => <SingleSidebarConversation key={conversation._id} conversation={conversation} /> ) }
+                />}
+            { conversations.length > 0 && conversations.map(conversation => <SingleSidebarConversation key={conversation._id} conversation={conversation} /> ) }
         </List>
         )}
         </>

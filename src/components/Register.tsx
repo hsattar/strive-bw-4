@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom'
 import { useState, FormEvent } from 'react'
 import useAxios from '../hooks/useAxios' 
 import { useDispatch } from 'react-redux'
+import { userLoginAction } from '../redux/actions'
 
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -198,8 +199,4 @@ export default function Login() {
         </Grid>
     </Container>
     )
-}
-
-function userLoginAction() {
-    throw new Error('Function not implemented.')
 }
