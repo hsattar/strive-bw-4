@@ -5,7 +5,7 @@ import ListItemText from '@mui/material/ListItemText'
 import Typography from '@mui/material/Typography'
 import { useDispatch } from 'react-redux'
 import useAxios from '../hooks/useAxios'
-import { addAnotherConversationToConversationArray } from '../redux/actions'
+import { addAnotherConversationToConversationArray, changeSidebarViewAction, selectConversationAction } from '../redux/actions'
 
 interface IProps {
     person: IUser
@@ -19,6 +19,8 @@ export default function SingleSidebarUserProfile({ person }: IProps) {
     const handleNewConversation = async () => {
         dispatch(addAnotherConversationToConversationArray(person))
         const response = await axiosRequest('/conversations/newConvo', 'POST', { recipientId: person._id })
+        dispatch(changeSidebarViewAction('conversations'))
+        dispatch(selectConversationAction(response.data.recipient))
     }   
 
     return (
