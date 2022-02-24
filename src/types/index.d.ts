@@ -16,18 +16,18 @@ interface IReduxStore {
 }
 
 interface IUser {
-    _id:           string
-    username:      string
-    email:         string
-    avatar:        string
-    firstName:     string
-    lastName:      string
-    contacts:      string[]
+    _id: string
+    username: string
+    email: string
+    avatar: string
+    firstName: string
+    lastName: string
+    contacts: string[]
     conversations: IConversation[]
-    status:        string
-    lastSeen:      date
-    createdAt:     date
-    updatedAt:     date
+    status: string
+    lastSeen: date
+    createdAt: date
+    updatedAt: date
 }
 
 interface IConversation {
@@ -37,12 +37,12 @@ interface IConversation {
 }
 
 interface IMessage {
-	sender: Types.ObjectId
-	image?: string
-	text?: string
-	_id: string
-	createdAt: date
-	updatedAt: date
+    senderId: string
+    // image?: string
+    messageContent: string
+    // _id: string
+    // createdAt: date
+    // updatedAt: date
 }
 
 interface IReduxStoreUser {

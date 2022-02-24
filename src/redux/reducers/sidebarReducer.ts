@@ -3,7 +3,7 @@ import { ACTIONS } from "../actions"
 import { initialState } from "../store"
 
 const sidebarReducer = (state = initialState.sidebar, action: AnyAction) => {
-    switch(action.type) {
+    switch (action.type) {
         case ACTIONS.SELECTED_CONVERSATION: return {
             ...state,
             conversationSelected: action.payload
@@ -18,7 +18,14 @@ const sidebarReducer = (state = initialState.sidebar, action: AnyAction) => {
         }
         case ACTIONS.ADD_ANOTHER_CONVERSATION_TO_CONVERSATION_ARRAY: return {
             ...state,
-            allConversations: [...state.allConversations ,action.payload]
+            allConversations: [...state.allConversations, action.payload]
+        }
+        case ACTIONS.ADD_MESSAGE_TO_CONVERSATION: return {
+            ...state,
+            conversationSelected: {
+                ...state.conversationSelected,
+                chatHistory: [...state.conversationSelected?.chatHistory!, action.payload]
+            }
         }
         default: return state
     }

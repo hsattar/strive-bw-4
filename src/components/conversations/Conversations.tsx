@@ -5,24 +5,59 @@ import CardHeader from '@mui/material/CardHeader';
 import Container from '@mui/material/Container/Container';
 import Grid from "@mui/material/Grid/Grid";
 import Typography from '@mui/material/Typography';
+import { useSelector } from "react-redux";
 import './convo.css';
 import { Footer } from "./Footer";
 import { TopBar } from "./TopBar";
 
 export default function ConvoContainer() {
+  const currentUserId = useSelector((state: IReduxStore) => state.user.currentUser?._id)
+  const conversationMessages = useSelector((state: IReduxStore) => state.sidebar.conversationSelected?.chatHistory)
+
+
+
   return (
     <Box
       className="convo_wrapper"
       sx={{
         display: 'flex',
         flexDirection: 'column',
-        flexGrow: 1, 
+        flexGrow: 1,
       }}>
       {/* TOP BAR */}
       <TopBar />
 
       {/* CHAT BUBBLES */}
       <div className="convo_wrapper">
+        <Container sx={{ display: "column" }}>
+          {
+            conversationMessages?.map(msg => {
+              return currentUserId === msg.senderId ? (
+                <Box sx={{ display: 'flex', justifyContent: 'flex-end', m: 1, }} >
+                  <Card sx={{ maxWidth: 600, bgcolor: '#005C4B', borderRadius: 3 }}>
+                    <CardContent>
+                      <Typography variant="body1" color="text.primary">
+                        {msg.messageContent}
+                      </Typography>
+                    </CardContent>
+                    <Typography m={2} variant="caption" color="text.secondary">09.02</Typography>
+                  </Card>
+                </Box>
+              ) : (
+                <Box sx={{ display: 'flex', justifyContent: 'flex-start', m: 1, }} >
+                  <Card sx={{ maxWidth: 600, bgcolor: '#202C33', margin: 'normal', m: 1, borderRadius: 3 }}>
+                    <CardContent>
+                      <Typography variant="body1" color="text.primary">
+                        {msg.messageContent}
+                      </Typography>
+                    </CardContent>
+                    <Typography m={2} variant="caption" color="text.secondary">09.02</Typography>
+                  </Card>
+                </Box>
+              )
+            })
+          }
+        </Container>
         {/* <Container sx={{ display: "column" }}>
           <Card sx={{ maxWidth: 600, bgcolor:'#202C33', margin: 'normal', m: 1, borderRadius: 3 }}>
               <CardContent>
@@ -50,7 +85,9 @@ export default function ConvoContainer() {
       </div>
 
       {/* TEXT INPUT */}
-        <Footer />
-      </Box>
+      <Footer />
+    </Box>
   )
 }
+
+

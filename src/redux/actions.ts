@@ -6,12 +6,13 @@ export const ACTIONS = {
     ADD_TO_CONVERSATIONS_ARRAY: 'ADD_TO_CONVERSATIONS_ARRAY',
     LOG_OUT_USER: 'LOG_OUT_USER',
     CHANGE_USER_THEME: 'CHANGE_USER_THEME',
-    ADD_ANOTHER_CONVERSATION_TO_CONVERSATION_ARRAY: 'ADD_ANOTHER_CONVERSATION_TO_CONVERSATION_ARRAY'
-}   
+    ADD_ANOTHER_CONVERSATION_TO_CONVERSATION_ARRAY: 'ADD_ANOTHER_CONVERSATION_TO_CONVERSATION_ARRAY',
+    ADD_MESSAGE_TO_CONVERSATION: 'ADD_MESSAGE_TO_CONVERSATION'
+}
 
 export const userLoginAction = () => ({
     type: ACTIONS.USER_LOGIN,
-}) 
+})
 
 export const selectConversationAction = (contact: IConversation) => ({
     type: ACTIONS.SELECTED_CONVERSATION,
@@ -45,4 +46,9 @@ export const logOutUserAction = () => ({
 export const changeUserThemeAction = (theme: string) => ({
     type: ACTIONS.CHANGE_USER_THEME,
     payload: theme
+})
+
+export const addMessageToConversationAction = (message: IMessage) => ({
+    type: ACTIONS.ADD_MESSAGE_TO_CONVERSATION,
+    payload: message
 })

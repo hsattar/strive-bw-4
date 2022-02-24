@@ -12,8 +12,9 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Toolbar from '@mui/material/Toolbar/Toolbar';
 import * as React from 'react';
 import { useEffect, useState } from "react";
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { io } from 'socket.io-client';
+import { addMessageToConversationAction } from '../../redux/actions';
 
 const theme = createTheme({
     palette: {
@@ -28,14 +29,16 @@ const { REACT_APP_BE_URL } = process.env
 const socket = io(REACT_APP_BE_URL!, { transports: ['websocket'] })
 
 export const Footer = () => {
-
+    const dispatch = useDispatch()
     const [message, setMessage] = useState('')
     const conversationId = useSelector((state: IReduxStore) => state.sidebar.conversationSelected?._id)
-    const currentUserId = useSelector((state: IReduxStore) => state.user.currentUser?._id)
+    const senderId = useSelector((state: IReduxStore) => state.user.currentUser?._id)
 
     const handleSendMessage = (e: React.FormEvent) => {
         e.preventDefault()
-        socket.emit('sendMessage', ({ messageContent: message, conversationId }))
+        socket.emit('sendMessage', ({ messageContent: message, conversationId, senderId }))
+        dispatch(addMessageToConversationAction({ messageContent: message, senderId } as IMessage))
+        setMessage('')
     }
 
     useEffect(() => {
@@ -44,9 +47,10 @@ export const Footer = () => {
         })
         socket.emit('newConnection', { room: conversationId || 'public' })
 
-        socket.on('receiveMessage', (message) => {
+        socket.on('receiveMessage', ({ messageContent, senderId }) => {
             console.log('new message received!')
             console.log(message)
+            dispatch(addMessageToConversationAction({ messageContent, senderId }))
         })
     }, [])
 
