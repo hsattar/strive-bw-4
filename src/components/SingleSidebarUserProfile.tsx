@@ -17,10 +17,9 @@ export default function SingleSidebarUserProfile({ person }: IProps) {
     const { axiosRequest } = useAxios()
 
     const handleNewConversation = async () => {
-        dispatch(addAnotherConversationToConversationArray(person))
         const response = await axiosRequest('/conversations/newConvo', 'POST', { recipientId: person._id })
+        if (response.status === 200) dispatch(addAnotherConversationToConversationArray(person))
         dispatch(changeSidebarViewAction('conversations'))
-        console.log(response)
         dispatch(selectConversationAction(response.data))
     }   
 

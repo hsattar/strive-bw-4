@@ -1,3 +1,5 @@
+declare module 'react-scroll-to-bottom'
+
 interface IUserCredentials {
     email: string
     password: string

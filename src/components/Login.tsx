@@ -57,16 +57,18 @@ export default function Login() {
         if (!userCredentials.password) setLoginError(errors => ({ ...errors, password: true }))
         if (!userCredentials.email || !userCredentials.password) setUserError(true)
 
-        setLoading(true)
-        const response = await axiosRequest('/users/login', 'POST', userCredentials)
-        if (response.status === 401) {
-            setInvalidDetails(true)
-            setLoading(false)
-        }
-        if (response.status === 200) {
-            dispatch(userLoginAction())
-            setLoading(false)
-            navigate('/')
+        if (!userError) {
+            setLoading(true)
+            const response = await axiosRequest('/users/login', 'POST', userCredentials)
+            if (response.status === 401) {
+                setInvalidDetails(true)
+                setLoading(false)
+            }
+            if (response.status === 200) {
+                dispatch(userLoginAction())
+                setLoading(false)
+                navigate('/')
+            }
         }
     }
 

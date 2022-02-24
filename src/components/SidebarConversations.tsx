@@ -23,6 +23,10 @@ export default function SidebarConversations() {
                 dispatch(addToConversationArray(conversations))
             }
         }
+        // else {
+        //     const filtered = conversations.filter(conversation => conversation.name.toLowerCase().includes(searchInput.toLowerCase()))
+        //     dispatch(addToConversationArray(filtered))
+        // }
     }
 
     useEffect(() => {
@@ -33,8 +37,7 @@ export default function SidebarConversations() {
         <>
         { currentUser && (
         <List className="sidebar-contacts">
-            { conversations.length === 0 && <SidebarUserProfiles view="empty-convo" /> }
-            {conversations.length > 0 && <TextField 
+            {(conversations.length > 0 || searchInput) && <TextField 
                 placeholder="Search"
                 variant="outlined" 
                 size="small" 
@@ -50,6 +53,7 @@ export default function SidebarConversations() {
                     ),
                 }}
                 />}
+            { (conversations.length === 0 && !searchInput) && <SidebarUserProfiles view="empty-convo" /> }
             { conversations.length > 0 && conversations.map(conversation => <SingleSidebarConversation key={conversation._id} conversation={conversation} /> ) }
         </List>
         )}

@@ -61,14 +61,15 @@ export default function SidebarUserProfiles({ view }: IProps) {
                     }}
                 />
                 </form>
+                <div style={{ maxWidth: "100%" }}>
                 <Button
                     variant="contained"
                     fullWidth
                     color="success"
-                    // style={{ maxWidth: "90%" }}
                 >
                     Create New Group
                 </Button>
+                </div>
                 <TextField 
                     placeholder="Search Contacts"
                     variant="outlined" 

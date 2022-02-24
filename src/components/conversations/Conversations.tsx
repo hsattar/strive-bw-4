@@ -1,14 +1,13 @@
-import Box from "@mui/material/Box";
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardHeader from '@mui/material/CardHeader';
-import Container from '@mui/material/Container/Container';
-import Grid from "@mui/material/Grid/Grid";
-import Typography from '@mui/material/Typography';
-import { useSelector } from "react-redux";
-import './convo.css';
-import { Footer } from "./Footer";
-import { TopBar } from "./TopBar";
+import Box from "@mui/material/Box"
+import Card from '@mui/material/Card'
+import CardContent from '@mui/material/CardContent'
+import Container from '@mui/material/Container/Container'
+import Typography from '@mui/material/Typography'
+import { useSelector } from "react-redux"
+import './convo.css'
+import { Footer } from "./Footer"
+import { TopBar } from "./TopBar"
+import ScrollToBottom from 'react-scroll-to-bottom'
 
 export default function ConvoContainer() {
   const currentUserId = useSelector((state: IReduxStore) => state.user.currentUser?._id)
@@ -18,13 +17,13 @@ export default function ConvoContainer() {
   //     const milliseconds = parseInt((duration % 1000) / 100),
   //       seconds = Math.floor((duration / 1000) % 60),
   //       minutes = Math.floor((duration / (1000 * 60)) % 60),
-  //       hours = Math.floor((duration / (1000 * 60 * 60)) % 24);
+  //       hours = Math.floor((duration / (1000 * 60 * 60)) % 24)
 
-  //     hours = (hours < 10) ? "0" + hours : hours;
-  //     minutes = (minutes < 10) ? "0" + minutes : minutes;
-  //     seconds = (seconds < 10) ? "0" + seconds : seconds;
+  //     hours = (hours < 10) ? "0" + hours : hours
+  //     minutes = (minutes < 10) ? "0" + minutes : minutes
+  //     seconds = (seconds < 10) ? "0" + seconds : seconds
 
-  //     return hours + ":" + minutes + ":" + seconds + "." + milliseconds;
+  //     return hours + ":" + minutes + ":" + seconds + "." + milliseconds
   // }
 
   return (
@@ -40,6 +39,7 @@ export default function ConvoContainer() {
 
       {/* CHAT BUBBLES */}
       <div className="convo_wrapper">
+        <ScrollToBottom checkInterval={17}>
         <Container sx={{ display: "column" }}>
           {
             conversationMessages?.map(msg => {
@@ -69,33 +69,8 @@ export default function ConvoContainer() {
             })
           }
         </Container>
-        {/* <Container sx={{ display: "column" }}>
-          <Card sx={{ maxWidth: 600, bgcolor:'#202C33', margin: 'normal', m: 1, borderRadius: 3 }}>
-              <CardContent>
-                <Typography variant="body1" color="text.primary">
-                  This impressive paella is a perfect party dish and a fun meal to cook
-                  together with your guests. Add 1 cup of frozen peas along with the mussels,
-                  if you like.
-                </Typography>
-              </CardContent>
-            <Typography m={2} variant="caption" color="text.secondary">09.02</Typography>
-          </Card>
-          <Box sx={{display: 'flex', justifyContent: 'flex-end', m: 1, }} >
-            <Card sx={{ maxWidth: 600, bgcolor:'#005C4B', borderRadius: 3}}>
-              <CardContent>
-                <Typography variant="body1" color="text.primary">
-                  This impressive paella is a perfect party dish and a fun meal to cook
-                  together with your guests. Add 1 cup of frozen peas along with the mussels,
-                  if you like.
-                </Typography>
-              </CardContent>
-              <Typography m={2} variant="caption" color="text.secondary">09.02</Typography>
-            </Card>
-          </Box>
-        </Container> */}
+        </ScrollToBottom>
       </div>
-
-      {/* TEXT INPUT */}
       <Footer />
     </Box>
   )

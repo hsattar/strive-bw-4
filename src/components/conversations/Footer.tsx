@@ -93,6 +93,7 @@ export const Footer = () => {
                                     fullWidth
                                     variant="outlined"
                                     type="text"
+                                    size="small"
                                     // multiline
                                     placeholder='Type a message'
                                     // color="#C8CED0"

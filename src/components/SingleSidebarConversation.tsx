@@ -28,15 +28,17 @@ export default function SingleSidebarConversation({ conversation }: IProps) {
         selectConvo()
     }, [selectedConversation])
 
+    const otherUser = conversation.members.filter(member => member._id !== currentUser?._id)
+
 
     return (
         <>
         <ListItem alignItems="center" className={selected ? "sidebar-single-contact selected-contact" : "sidebar-single-contact"} onClick={() => dispatch(selectConversationAction(conversation))}>
             <ListItemAvatar>
-            <Avatar alt={conversation.name} src={conversation.name} />
+            <Avatar alt={conversation.name || otherUser[0].username} src={conversation.name || otherUser[0].username} />
             </ListItemAvatar>
             <ListItemText
-            primary={ <Typography color="text.primary">{conversation.name}</Typography> }
+            primary={ <Typography color="text.primary">{conversation.name || otherUser[0].username}</Typography> }
             secondary={
                 <Typography
                     sx={{ display: 'inline' }}
