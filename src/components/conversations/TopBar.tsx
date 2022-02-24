@@ -29,10 +29,10 @@ export const TopBar = () => {
                             <Toolbar>
                                 <CardHeader
                                     avatar={
-                                        <Avatar src={selectedConversation.avatar} alt={selectedConversation.username} />
+                                        <Avatar src={selectedConversation._id} alt={selectedConversation._id} />
                                         }
-                                        title={`${selectedConversation.firstName} ${selectedConversation.lastName}`}
-                                        subheader={`Last seen ${selectedConversation.lastSeen}`}
+                                        title={`${selectedConversation._id} ${selectedConversation._id}`}
+                                        subheader={`Last seen ${selectedConversation._id}`}
                                     />
                                 <Box sx={{
                                         display: 'flex',

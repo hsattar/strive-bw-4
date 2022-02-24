@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { selectConversationAction } from '../redux/actions'
 
 interface IProps {
-    conversation: IUser
+    conversation: IConversation
 }
 
 export default function SingleSidebarConversation({ conversation }: IProps) {
@@ -33,10 +33,10 @@ export default function SingleSidebarConversation({ conversation }: IProps) {
         <>
         <ListItem alignItems="center" className={selected ? "sidebar-single-contact selected-contact" : "sidebar-single-contact"} onClick={() => dispatch(selectConversationAction(conversation))}>
             <ListItemAvatar>
-            <Avatar alt={conversation.username} src={conversation.avatar} />
+            <Avatar alt={conversation._id} src={conversation._id} />
             </ListItemAvatar>
             <ListItemText
-            primary={ <Typography color="text.primary">{conversation.username}</Typography> }
+            primary={ <Typography color="text.primary">{conversation._id}</Typography> }
             secondary={
                 <Typography
                     sx={{ display: 'inline' }}
