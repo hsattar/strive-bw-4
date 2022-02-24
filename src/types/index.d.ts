@@ -34,6 +34,7 @@ interface IConversation {
     _id: string
     chatHistory: IMessage[]
     members: IUser[]
+    name: string
 }
 
 interface IMessage {

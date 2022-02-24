@@ -24,3 +24,7 @@
 ::-webkit-scrollbar-thumb:hover {
 	background: rgba(85, 85, 85, 0.247);
 }
+
+.MuiCardHeader-subheader {
+	color: #e1e1e1 !important;
+}

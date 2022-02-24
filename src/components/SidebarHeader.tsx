@@ -36,12 +36,15 @@ export default function SidebarHeader() {
                     <>
                     <Avatar alt={currentUser.username} src={currentUser.avatar} />
                     <Typography variant="subtitle1" style={{ paddingLeft: '1rem' }}>{currentUser.username}</Typography>
-                    </> : 
+                    </> :
+                    <>
                     <KeyboardBackspaceOutlinedIcon style={{ cursor: 'pointer' }}onClick={() => dispatch(changeSidebarViewAction('conversations'))} />
+                    <Typography variant="subtitle1" style={{ paddingLeft: '1rem' }}>{currentlyViewing === 'new-message' ? 'Contacts' : 'Profile'}</Typography>
+                    </> 
                 }
             </div>
             <div>
-                <PeopleIcon style={{ paddingRight: '1rem', cursor: 'pointer' }} onClick={() => dispatch(changeSidebarViewAction('users'))} />
+                {/* <PeopleIcon style={{ paddingRight: '1rem', cursor: 'pointer' }} onClick={() => dispatch(changeSidebarViewAction('users'))} /> */}
                 <MessageIcon style={{ paddingRight: '1rem', cursor: 'pointer' }} onClick={() => dispatch(changeSidebarViewAction('new-message'))} />
                 <SettingsIcon style={{ cursor: 'pointer' }} onClick={() => dispatch(changeSidebarViewAction('settings'))} />
             </div>

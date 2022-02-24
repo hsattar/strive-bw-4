@@ -20,7 +20,6 @@ export default function SidebarConversations() {
         if (conversations.length === 0) {
             if (currentUser) {
                 const conversations = currentUser.conversations.length === 0 ? [] : (currentUser.conversations.map(conversation => conversation))
-                // const conversationUsers = conversations.map(conversation => conversation[0])
                 dispatch(addToConversationArray(conversations))
             }
         }

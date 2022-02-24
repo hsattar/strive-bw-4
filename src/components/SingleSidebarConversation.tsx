@@ -33,10 +33,10 @@ export default function SingleSidebarConversation({ conversation }: IProps) {
         <>
         <ListItem alignItems="center" className={selected ? "sidebar-single-contact selected-contact" : "sidebar-single-contact"} onClick={() => dispatch(selectConversationAction(conversation))}>
             <ListItemAvatar>
-            <Avatar alt={conversation._id} src={conversation._id} />
+            <Avatar alt={conversation.name} src={conversation.name} />
             </ListItemAvatar>
             <ListItemText
-            primary={ <Typography color="text.primary">{conversation._id}</Typography> }
+            primary={ <Typography color="text.primary">{conversation.name}</Typography> }
             secondary={
                 <Typography
                     sx={{ display: 'inline' }}
