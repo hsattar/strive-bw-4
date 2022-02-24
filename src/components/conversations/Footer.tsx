@@ -42,13 +42,19 @@ export const Footer = () => {
         socket.on('connect', () => {
             console.log('Connection is now established!')
         })
-        socket.emit('newConnection', { room: currentUserId })
+        socket.emit('newConnection', { room: conversationId || 'public' })
 
-        socket.on('message', (message) => {
+        socket.on('receiveMessage', (message) => {
             console.log('new message received!')
             console.log(message)
         })
     }, [])
+
+    useEffect(() => {
+        socket.emit('newConnection', { room: conversationId })
+        console.log(`I am in room ${conversationId}`);
+
+    }, [conversationId])
 
     // const { register, handleSubmit, formState: { errors } } = useForm<IText>()
     // const onSubmit: SubmitHandler<IText> = (data) => {
