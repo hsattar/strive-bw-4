@@ -40,16 +40,13 @@ export const Footer = () => {
 
     useEffect(() => {
         socket.on('connect', () => {
-            console.log('connection established!')
+            console.log('Connection is now established!')
         })
-        socket.on('newConnection', (id) => {
-            console.log('newConnection: ', id);
+        socket.emit('newConnection', { room: currentUserId })
 
-        })
-        console.log(currentUserId);
-        socket.emit('joinRoom', ({ currentUserId }))
         socket.on('message', (message) => {
-            console.log(message);
+            console.log('new message received!')
+            console.log(message)
         })
     }, [])
 
