@@ -32,11 +32,11 @@ interface IUser {
 
 interface IConversation {
     _id: string
-    chatHistory: IConversation[]
+    chatHistory: IMessage[]
     members: IUser[]
 }
 
-interface IConversation {
+interface IMessage {
 	sender: Types.ObjectId
 	image?: string
 	text?: string
@@ -57,9 +57,9 @@ interface IText {
 }
 
 interface IReduxStoreSidebar {
-    conversationSelected: IUser | null
+    conversationSelected: IConversation | null
     currentlyViewing: 'conversations' | 'users' | 'new-message' | 'settings'
-    allConversations: IUser[]
+    allConversations: IConversation[]
 }
 
 interface IUser {

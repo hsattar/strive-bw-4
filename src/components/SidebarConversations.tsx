@@ -18,9 +18,9 @@ export default function SidebarConversations() {
     const updateConversations = () => {
         if (conversations.length === 0) {
             if (currentUser) {
-                const conversations = currentUser.conversations.length === 0 ? [] : (currentUser.conversations.map(conversation => conversation.members.filter(member => (member._id !== currentUser._id) && (member.username.toLowerCase().includes(searchInput.toLowerCase())))))
-                const conversationUsers = conversations.map(conversation => conversation[0])
-                dispatch(addToConversationArray(conversationUsers))
+                const conversations = currentUser.conversations.length === 0 ? [] : (currentUser.conversations.map(conversation => conversation))
+                // const conversationUsers = conversations.map(conversation => conversation[0])
+                dispatch(addToConversationArray(conversations))
             }
         }
     }
