@@ -61,7 +61,8 @@ interface IText {
 interface IReduxStoreSidebar {
     conversationSelected: IConversation | null
     currentlyViewing: 'conversations' | 'users' | 'new-message' | 'settings'
-    allConversations: IConversation[]
+    allConversations: IConversation[],
+    contacts: IUser[]
 }
 
 interface IUser {

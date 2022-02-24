@@ -14,7 +14,8 @@ export const initialState: IReduxStore = {
     sidebar: {
         conversationSelected: null,
         currentlyViewing: 'conversations',
-        allConversations: []
+        allConversations: [],
+        contacts: []
     }
 }
 

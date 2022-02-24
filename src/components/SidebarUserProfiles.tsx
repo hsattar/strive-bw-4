@@ -4,6 +4,10 @@ import List from '@mui/material/List'
 import { FormEvent, useEffect, useState } from 'react'
 import useAxios from '../hooks/useAxios'
 import SingleSidebarUserProfile from './SingleSidebarUserProfile'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+import { useSelector, useDispatch } from 'react-redux'
+import { addAnotherContactToListOfContactsAction, addToListOfContactsAction } from '../redux/actions'
 
 interface IProps {
     view: 'users'| 'new-message' | 'empty-convo'
@@ -13,20 +17,38 @@ export default function SidebarUserProfiles({ view }: IProps) {
 
     const [email, setEmail] = useState('')
     const { axiosRequest } = useAxios()
-
-    const [people, setPeople] = useState<IUser[] | null>(null)
+    const dispatch = useDispatch()
+    const contacts = useSelector((state: IReduxStore) => state.sidebar.contacts)
 
     const fetchPeople = async () => {
-        const response = await axiosRequest('/users/me/contacts', 'GET')
-        if (response.data) {
-            setPeople(response.data)
+        if (contacts.length === 0) {
+            const response = await axiosRequest('/users/me/contacts', 'GET')
+            if (response.data) {
+                dispatch(addToListOfContactsAction(response.data))
+            }
         }
     }
 
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault()
-        const response = await axiosRequest('/users/contact', 'POST', { email } )
+        const response = await axiosRequest('/users/contact', 'POST', { email })
+        if (response.status === 200) {
+            notify()
+            setEmail('')
+            dispatch(addAnotherContactToListOfContactsAction(response.data))
+        }
+
     }
+
+    const notify = () => toast.success('Successfully saved the contact!', {
+        position: "bottom-left",
+        autoClose: 2500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+    })
 
     useEffect(() => {
         fetchPeople()
@@ -43,7 +65,14 @@ export default function SidebarUserProfiles({ view }: IProps) {
         <List className="sidebar-contacts">
             { view === 'new-message' && (
                 <>
-                <form onSubmit={handleSubmit} style={{ width: '100%', marginLeft: '2.5rem' }}>
+                <Button
+                    variant="contained"
+                    color="success"
+                    fullWidth
+                >
+                    Create New Group
+                </Button>
+                <form onSubmit={handleSubmit} style={{ width: '100%', display: 'flex', justifyContent: 'center', marginTop: '0.5rem' }}>
                 <TextField 
                     placeholder="Add New Contact"
                     variant="outlined" 
@@ -61,15 +90,6 @@ export default function SidebarUserProfiles({ view }: IProps) {
                     }}
                 />
                 </form>
-                <div style={{ maxWidth: "100%" }}>
-                <Button
-                    variant="contained"
-                    fullWidth
-                    color="success"
-                >
-                    Create New Group
-                </Button>
-                </div>
                 <TextField 
                     placeholder="Search Contacts"
                     variant="outlined" 
@@ -84,10 +104,21 @@ export default function SidebarUserProfiles({ view }: IProps) {
                         ),
                     }}
                 />
-                { people && people.map(person => <SingleSidebarUserProfile key={person._id} person={person} />)}
+                { contacts && contacts.map(contact => <SingleSidebarUserProfile key={contact._id} contact={contact} />)}
                 </>
                 )
             }
+            <ToastContainer 
+                position="bottom-left"
+                autoClose={2500}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
         </List>
         </>
         )

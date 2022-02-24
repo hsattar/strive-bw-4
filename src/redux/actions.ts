@@ -7,7 +7,9 @@ export const ACTIONS = {
     LOG_OUT_USER: 'LOG_OUT_USER',
     CHANGE_USER_THEME: 'CHANGE_USER_THEME',
     ADD_ANOTHER_CONVERSATION_TO_CONVERSATION_ARRAY: 'ADD_ANOTHER_CONVERSATION_TO_CONVERSATION_ARRAY',
-    ADD_MESSAGE_TO_CONVERSATION: 'ADD_MESSAGE_TO_CONVERSATION'
+    ADD_MESSAGE_TO_CONVERSATION: 'ADD_MESSAGE_TO_CONVERSATION',
+    ADD_TO_LIST_OF_CONTACTS: 'ADD_TO_LIST_OF_CONTACTS',
+    ADD_ANOTHER_CONTACT_TO_THE_LIST: 'ADD_ANOTHER_CONTACT_TO_THE_LIST'
 }
 
 export const userLoginAction = () => ({
@@ -51,4 +53,14 @@ export const changeUserThemeAction = (theme: string) => ({
 export const addMessageToConversationAction = (message: IMessage) => ({
     type: ACTIONS.ADD_MESSAGE_TO_CONVERSATION,
     payload: message
+})
+
+export const addToListOfContactsAction = (contacts: IUser[]) => ({
+    type: ACTIONS.ADD_TO_LIST_OF_CONTACTS,
+    payload: contacts
+})
+
+export const addAnotherContactToListOfContactsAction = (contact: IUser) => ({
+    type: ACTIONS.ADD_ANOTHER_CONTACT_TO_THE_LIST,
+    payload: contact
 })

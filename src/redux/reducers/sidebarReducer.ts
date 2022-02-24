@@ -27,6 +27,14 @@ const sidebarReducer = (state = initialState.sidebar, action: AnyAction) => {
                 chatHistory: [...state.conversationSelected?.chatHistory!, action.payload]
             }
         }
+        case ACTIONS.ADD_TO_LIST_OF_CONTACTS: return {
+            ...state,
+            contacts: action.payload
+        }
+        case ACTIONS.ADD_ANOTHER_CONTACT_TO_THE_LIST: return {
+            ...state,
+            contacts: [...state.contacts, action.payload]
+        }
         default: return state
     }
 }

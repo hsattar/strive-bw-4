@@ -26,13 +26,20 @@ export default function SingleSidebarConversation({ conversation }: IProps) {
 
     useEffect(() => {
         selectConvo()
+        console.log(otherUser)
     }, [selectedConversation])
 
-    const otherUser = conversation.members.filter(member => member._id !== currentUser?._id)
+    const otherUser = conversation.members.filter(member => {
+        if (member._id !== currentUser?._id) {
+            return member
+        }
+    })
 
+    console.log(otherUser)
 
     return (
         <>
+        { otherUser[0] && (
         <ListItem alignItems="center" className={selected ? "sidebar-single-contact selected-contact" : "sidebar-single-contact"} onClick={() => dispatch(selectConversationAction(conversation))}>
             <ListItemAvatar>
             <Avatar alt={conversation.name || otherUser[0].username} src={conversation.name || otherUser[0].username} />
@@ -52,6 +59,8 @@ export default function SingleSidebarConversation({ conversation }: IProps) {
             }
             />
         </ListItem>
+        )
+        }
         </>
     )
 }
