@@ -36,7 +36,7 @@ export const addToConversationArray = (conversations: IConversation[]) => ({
     payload: conversations
 })
 
-export const addAnotherConversationToConversationArray = (conversation: IUser) => ({
+export const addAnotherConversationToConversationArray = (conversation: IConversation) => ({
     type: ACTIONS.ADD_ANOTHER_CONVERSATION_TO_CONVERSATION_ARRAY,
     payload: conversation
 })

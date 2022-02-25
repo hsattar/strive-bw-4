@@ -24,6 +24,10 @@ export default function SingleSidebarUserProfile({ contact }: IProps) {
             dispatch(changeSidebarViewAction('conversations'))
             dispatch(selectConversationAction(response.data))
         }
+        if (response.status === 202) {
+            dispatch(changeSidebarViewAction('conversations'))
+            dispatch(selectConversationAction(response.data))
+        } 
     }   
 
     return (
