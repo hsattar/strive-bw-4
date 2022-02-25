@@ -6,6 +6,7 @@ import NotFound from './components/NotFound'
 import PrivateRoute from './components/PrivateRoute'
 import Register from './components/Register'
 import { useSelector } from 'react-redux'
+import FacebookLogin from './components/FacebookLogin'
 
 export default function App() {
 
@@ -24,8 +25,10 @@ export default function App() {
         <Routes>
           <Route path="/"  element={ <PrivateRoute><Home /></PrivateRoute> } />
           <Route path="/login"  element={ <Login /> } />
-          <Route path="/register"  element={ <Register /> } />
-          <Route path="*" element={ <NotFound /> }/>
+            <Route path="/register" element={<Register />} />
+            <Route path="/facebook" element={<FacebookLogin />} />
+            {/* <Route path="/facebook" element={<h1>facebook</h1>} /> */}
+            <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
       </Router>

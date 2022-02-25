@@ -1,54 +1,59 @@
+/** @format */
+
 body {
-    background-color: #1A2027;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
+	background-color: #1a2027;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
 }
 
 .light-theme {
-    filter: invert(1) hue-rotate(180deg);
+	filter: invert(1) hue-rotate(180deg);
 }
 
 .sidebar-contacts {
-    width: 100%;
-    background-color: #121A21;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 88vh;
-    max-height: 88vh;
-    overflow-y: scroll;
+	width: 100%;
+	background-color: #121a21;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	min-height: 88vh;
+	max-height: 88vh;
+	overflow-y: scroll;
 }
 
 /* width */
 ::-webkit-scrollbar {
-    width: 5px;
+	width: 5px;
 }
-  
-  /* Track */
+
+/* Track */
 ::-webkit-scrollbar-track {
-    background: #121A21;
+	background: #121a21;
 }
-  
-  /* Handle */
+
+/* Handle */
 ::-webkit-scrollbar-thumb {
-    background: #40474B;
+	background: #40474b;
 }
-  
-  /* Handle on hover */
+
+/* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-    background: #515a5f;
+	background: #515a5f;
 }
 
-.sidebar-single-contact:not(:last-child) { 
-    border-bottom: 0.1px solid #515a5f80;
+.sidebar-single-contact:not(:last-child) {
+	border-bottom: 0.1px solid #515a5f80;
 }
 
-.sidebar-single-contact:hover { 
-    cursor: pointer;
-    background-color: #40474B;
+.sidebar-single-contact:hover {
+	cursor: pointer;
+	background-color: #40474b;
 }
 
 .selected-contact {
-    background-color: #40474B;
+	background-color: #40474b;
 }
+/* .facebook_login {
+	background-image: url('../src/assets/facbook-logo.png');
+} */
