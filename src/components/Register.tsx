@@ -195,7 +195,7 @@ export default function Login() {
                     >
                     Login
                         </Button>
-                    <a href="http://localhost:3001/auth/facebook">
+                    <a href="https://whatsapp-strive-buildweek4.herokuapp.com/auth/facebook">
                             <Button
                                 className="facebook_login"
                         onClick={() => navigate('/register')} 
