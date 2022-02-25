@@ -15,7 +15,8 @@ import * as React from 'react';
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { io } from 'socket.io-client';
-import { addMessageToConversationAction } from '../../redux/actions';
+import { addMessageToConversationAction } from '../../redux/actions'
+import Picker from 'emoji-picker-react'
 
 const theme = createTheme({
     palette: {
@@ -34,7 +35,17 @@ export const Footer = () => {
     const [message, setMessage] = useState('')
     const conversationId = useSelector((state: IReduxStore) => state.sidebar.conversationSelected?._id)
     const senderId = useSelector((state: IReduxStore) => state.user.currentUser?._id)
-    const [ isMessaging, setIsMessaging] = useState(false)
+    const [isMessaging, setIsMessaging] = useState(false)
+    const [chooseEmoji, setChooseEmonji] = useState(false)
+    const [chosenEmoji, setChosenEmoji] = useState(null)
+
+    const onEmojiClick = (e: React.FormEvent, emojiObject: any) => {
+        setChosenEmoji(emojiObject)
+    }
+     const EmojiData = (chosenEmoji: any) => (
+        <div style={{ textAlign: 'center' }}>
+        </div>
+    )
 
     const handleSendMessage = (e: React.FormEvent) => {
         e.preventDefault()
@@ -62,11 +73,6 @@ export const Footer = () => {
 
     }, [conversationId])
 
-    // const { register, handleSubmit, formState: { errors } } = useForm<IText>()
-    // const onSubmit: SubmitHandler<IText> = (data) => {
-
-    // }
-
     return (
         <ThemeProvider theme={theme}>
             <Box>
@@ -78,11 +84,16 @@ export const Footer = () => {
                                 aria-label="account of current user"
                                 aria-haspopup="true"
                                 color="secondary"
+                                onClick={e => setChooseEmonji(true)}
                             >
                                 <Badge>
                                     <InsertEmoticonIcon />
                                 </Badge>
                             </IconButton>
+                                    {chooseEmoji && 
+                                        <Picker onEmojiClick={onEmojiClick} /> &&
+                                        chosenEmoji && <EmojiData chosenEmoji={chosenEmoji}/>
+                                    }
                             <IconButton size="large" color="secondary">
                                 <Badge>
                                     <AttachFileIcon color="secondary" />
@@ -124,14 +135,12 @@ export const Footer = () => {
                                 size="large"
                                 aria-label="show 17 new notifications"
                                 color="secondary"
-
                             >
                                 <Badge>
                                     <KeyboardVoiceIcon />
                                 </Badge>
                             </IconButton>
-                        </Grid>
-                                
+                        </Grid>         
                         )}
                     </Toolbar>
                 </AppBar>

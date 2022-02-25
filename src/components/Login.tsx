@@ -11,6 +11,7 @@ import { useState, FormEvent } from 'react'
 import useAxios from '../hooks/useAxios'
 import { useDispatch } from 'react-redux'
 import { userLoginAction } from '../redux/actions'
+import FacebookIcon from '@mui/icons-material/Facebook'
  
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -121,7 +122,18 @@ export default function Login() {
                         disabled={loading}
                     >
                         Register
-                    </Button>
+                        </Button>
+                    <a href="http://localhost:3001/auth/facebook">
+                        <Button
+                        className="facebook_login"
+                        variant="outlined" 
+                                fullWidth
+                        color="success" 
+                        style={{ margin: "0.25rem 0"}}
+                    >
+                        <FacebookIcon/>
+                        </Button>
+                    </a>
                 </Item>
             </Grid>
         </Grid>
