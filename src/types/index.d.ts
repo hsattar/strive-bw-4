@@ -40,9 +40,9 @@ interface IConversation {
 }
 
 interface IMessage {
-    senderId: string
+    sender: string
     // image?: string
-    messageContent: string
+    text: string
     // _id: string
     sentAt: date
 }

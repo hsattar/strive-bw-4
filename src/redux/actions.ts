@@ -1,3 +1,9 @@
+import { Action } from "redux"
+import { ThunkDispatch } from "redux-thunk"
+import axios from 'axios'
+
+const { REACT_APP_BE_URL } = process.env 
+
 export const ACTIONS = {
     USER_LOGIN: 'USER_LOGIN',
     SELECTED_CONVERSATION: 'SELECTED_CONVERSATION',
@@ -16,10 +22,17 @@ export const userLoginAction = () => ({
     type: ACTIONS.USER_LOGIN,
 })
 
-export const selectConversationAction = (contact: IConversation) => ({
-    type: ACTIONS.SELECTED_CONVERSATION,
-    payload: contact
-})
+export const selectConversationAction = (conversation: IConversation) => async (dispatch: ThunkDispatch<Action, any, any>) => {
+    const response = await axios.get(`${REACT_APP_BE_URL}/conversations/${conversation._id}`, { withCredentials: true })
+    const latestConvo = {
+        ...conversation,
+        chatHistory: response.data.chatHistory
+    }
+    dispatch({
+        type: ACTIONS.SELECTED_CONVERSATION,
+        payload: latestConvo
+    })
+}
 
 export const addMyInfoToCurentUser = (myInfo: IUser) => ({
     type: ACTIONS.ADD_MY_INFO_TO_CURRENT_USER,

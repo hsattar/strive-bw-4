@@ -50,7 +50,7 @@ export const Footer = () => {
     const handleSendMessage = (e: React.FormEvent) => {
         e.preventDefault()
         socket.emit('sendMessage', ({ messageContent: message, conversationId, senderId, sentAt: Date.now() }))
-        dispatch(addMessageToConversationAction({ messageContent: message, senderId, sentAt: Date.now() } as IMessage))
+        dispatch(addMessageToConversationAction({ text: message, sender: senderId, sentAt: Date.now() } as IMessage))
         setMessage('')
     }
 
@@ -63,7 +63,7 @@ export const Footer = () => {
         socket.on('receiveMessage', ({ messageContent, senderId, sentAt }) => {
             console.log('new message received!')
             console.log(message)
-            dispatch(addMessageToConversationAction({ messageContent, senderId, sentAt }))
+            dispatch(addMessageToConversationAction({ text: messageContent, sender: senderId, sentAt }))
         })
     }, [])
 

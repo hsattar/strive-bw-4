@@ -45,15 +45,15 @@ export default function ConvoContainer() {
         <Container sx={{ display: "column" }}>
           {
             conversationMessages?.map(msg => {
-              return currentUserId === msg.senderId ? (
+              return currentUserId === msg.sender ? (
                 <Box sx={{ display: 'flex', justifyContent: 'flex-end', m: 1, }} >
                   <Card sx={{ maxWidth: 600, bgcolor: '#005C4B', borderRadius: 3 }}>
                     <CardContent>
                       <Typography variant="body1" color="text.primary">
-                        {msg.messageContent}
+                        {msg.text}
                       </Typography>
                     </CardContent>
-                    <Typography m={2} variant="caption" color="text.secondary">{msg.sentAt}</Typography>
+                    <Typography m={2} variant="caption" color="text.secondary">{new Date(msg.sentAt).toString().split('GMT+0000')[0]}</Typography>
                   </Card>
                 </Box>
               ) : (
@@ -61,10 +61,10 @@ export default function ConvoContainer() {
                   <Card sx={{ maxWidth: 600, bgcolor: '#202C33', margin: 'normal', m: 1, borderRadius: 3 }}>
                     <CardContent>
                       <Typography variant="body1" color="text.primary">
-                        {msg.messageContent}
+                        {msg.text}
                       </Typography>
                     </CardContent>
-                    <Typography m={2} variant="caption" color="text.secondary">{msg.sentAt}</Typography>
+                    <Typography m={2} variant="caption" color="text.secondary">{new Date(msg.sentAt).toString().split('GMT+0000')[0]}</Typography>
                   </Card>
                 </Box>
               )

@@ -36,7 +36,7 @@ export const TopBar = () => {
                                         <Avatar src={selectedConversation.name || otherUser[0].username} alt={selectedConversation.name || otherUser[0].username} />
                                         }
                                         title={selectedConversation.name || otherUser[0].username}
-                                        subheader={`Last seen ${otherUser[0].lastSeen}`}
+                                        subheader={`Last seen ${new Date(otherUser[0].lastSeen).toString().split('GMT+0000')[0]}`}
                                     />
                                 <Box sx={{
                                         display: 'flex',
