@@ -21,6 +21,11 @@ const userReducer = (state = initialState.user, action: AnyAction) => {
             ...state,
             theme: action.payload
         }
+        case ACTIONS.CLEAR_USER_INFO: return {
+            isLoggedIn: false,
+            currentUser: null,
+            theme: 'dark'
+        }
         default: return state
     }
 }

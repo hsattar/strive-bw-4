@@ -2,7 +2,7 @@ import { Avatar, Button, Stack, TextField, Typography } from '@mui/material'
 import { useDispatch, useSelector } from 'react-redux'
 import useAxios from '../hooks/useAxios'
 import { useNavigate } from 'react-router-dom'
-import { changeUserThemeAction, logOutUserAction } from '../redux/actions'
+import { changeUserThemeAction, clearSidebarInfoAction, clearUserInfoAction, logOutUserAction } from '../redux/actions'
 import { useEffect, useState } from 'react'
 import EditIcon from '@mui/icons-material/Edit'
 
@@ -35,6 +35,8 @@ export default function ProfileSettings() {
 
     const handleLogOut = () => {
         dispatch(logOutUserAction())
+        dispatch(clearUserInfoAction())
+        dispatch(clearSidebarInfoAction())
         navigate('/login')
     }   
 

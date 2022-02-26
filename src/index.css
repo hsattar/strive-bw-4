@@ -8,7 +8,11 @@ body {
 }
 
 .light-theme {
-	filter: invert(1) hue-rotate(180deg);
+	filter: invert(1) hue-rotate(180deg)
+}
+
+.light-theme img {
+	filter: invert(1) hue-rotate(180deg)
 }
 
 .sidebar-contacts {

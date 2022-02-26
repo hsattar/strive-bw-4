@@ -15,7 +15,9 @@ export const ACTIONS = {
     ADD_ANOTHER_CONVERSATION_TO_CONVERSATION_ARRAY: 'ADD_ANOTHER_CONVERSATION_TO_CONVERSATION_ARRAY',
     ADD_MESSAGE_TO_CONVERSATION: 'ADD_MESSAGE_TO_CONVERSATION',
     ADD_TO_LIST_OF_CONTACTS: 'ADD_TO_LIST_OF_CONTACTS',
-    ADD_ANOTHER_CONTACT_TO_THE_LIST: 'ADD_ANOTHER_CONTACT_TO_THE_LIST'
+    ADD_ANOTHER_CONTACT_TO_THE_LIST: 'ADD_ANOTHER_CONTACT_TO_THE_LIST',
+    CLEAR_USER_INFO: 'CLEAR_USER_INFO',
+    CLEAR_SIDEBAR_INFO: 'CLEAR_SIDEBAR_INFO'
 }
 
 export const userLoginAction = () => ({
@@ -76,4 +78,12 @@ export const addToListOfContactsAction = (contacts: IUser[]) => ({
 export const addAnotherContactToListOfContactsAction = (contact: IUser) => ({
     type: ACTIONS.ADD_ANOTHER_CONTACT_TO_THE_LIST,
     payload: contact
+})
+
+export const clearUserInfoAction = () => ({
+    type: ACTIONS.CLEAR_USER_INFO
+})
+
+export const clearSidebarInfoAction = () => ({
+    type: ACTIONS.CLEAR_SIDEBAR_INFO
 })

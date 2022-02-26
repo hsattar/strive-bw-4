@@ -35,6 +35,12 @@ const sidebarReducer = (state = initialState.sidebar, action: AnyAction) => {
             ...state,
             contacts: [...state.contacts, action.payload]
         }
+        case ACTIONS.CLEAR_SIDEBAR_INFO: return {
+            conversationSelected: null,
+            currentlyViewing: 'conversations',
+            allConversations: [],
+            contacts: []
+        }
         default: return state
     }
 }

@@ -101,7 +101,7 @@ export const Footer = () => {
                             </IconButton>
                         </Grid>
                         <Grid item xs={11}>
-                            <form onSubmit={handleSendMessage}>
+                            <form autoComplete="off" onSubmit={handleSendMessage}>
                                 <TextField
                                     fullWidth
                                     variant="outlined"
