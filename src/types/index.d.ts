@@ -37,6 +37,7 @@ interface IConversation {
     chatHistory: IMessage[]
     members: IUser[]
     name: string
+    lastMessage: IMessage
 }
 
 interface IMessage {
@@ -44,7 +45,8 @@ interface IMessage {
     // image?: string
     text: string
     // _id: string
-    sentAt: date
+    sentAt: date,
+    ticks: number
 }
 
 interface IReduxStoreUser {

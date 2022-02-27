@@ -41,6 +41,10 @@ const sidebarReducer = (state = initialState.sidebar, action: AnyAction) => {
             allConversations: [],
             contacts: []
         }
+        case ACTIONS.UPDATE_CONVERSATION_TICKS: return {
+            ...state,
+            allConversations: action.payload
+        }
         default: return state
     }
 }

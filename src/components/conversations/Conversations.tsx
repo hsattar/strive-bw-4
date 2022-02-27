@@ -8,25 +8,13 @@ import './convo.css'
 import { Footer } from "./Footer"
 import { TopBar } from "./TopBar"
 import ScrollToBottom from 'react-scroll-to-bottom'
+import { getHours, getMinutes } from 'date-fns'
 
 
 
 export default function ConvoContainer() {
   const currentUserId = useSelector((state: IReduxStore) => state.user.currentUser?._id)
   const conversationMessages = useSelector((state: IReduxStore) => state.sidebar.conversationSelected?.chatHistory)
-
-  //   const turnMsToTime = (duration: number) => {
-  //     const milliseconds = parseInt((duration % 1000) / 100),
-  //       seconds = Math.floor((duration / 1000) % 60),
-  //       minutes = Math.floor((duration / (1000 * 60)) % 60),
-  //       hours = Math.floor((duration / (1000 * 60 * 60)) % 24)
-
-  //     hours = (hours < 10) ? "0" + hours : hours
-  //     minutes = (minutes < 10) ? "0" + minutes : minutes
-  //     seconds = (seconds < 10) ? "0" + seconds : seconds
-
-  //     return hours + ":" + minutes + ":" + seconds + "." + milliseconds
-  // }
 
   return (
     <Box
@@ -43,33 +31,41 @@ export default function ConvoContainer() {
       <div className="convo_wrapper">
         <ScrollToBottom checkInterval={17}>
         <Container sx={{ display: "column" }}>
-          {
-            conversationMessages?.map(msg => {
+          { conversationMessages?.map(msg => {
+            const hours = getHours(new Date(msg.sentAt))
+            const minutes = getMinutes(new Date(msg.sentAt))
+            let time
+            if (hours < 10 && minutes < 10) {
+              time = `0${hours}:0${minutes}`
+            } else if (hours < 10) {
+              time = `0${hours}:${minutes}`
+            } else if (minutes < 10) {
+              time = `${hours}:0${minutes}`
+            } else {
+              time = `${hours}:${minutes}`
+            }
+
+            const ticks = msg.ticks === 3 ? '✔✔✔' : msg.ticks === 2 ? '✔✔' : '✔'
               return currentUserId === msg.sender ? (
-                <Box sx={{ display: 'flex', justifyContent: 'flex-end', m: 1, }} >
-                  <Card sx={{ maxWidth: 600, bgcolor: '#005C4B', borderRadius: 3 }}>
-                    <CardContent>
-                      <Typography variant="body1" color="text.primary">
-                        {msg.text}
-                      </Typography>
+                <Box sx={{ display: 'flex', justifyContent: 'flex-end', m: 0 }} >
+                  <Card sx={{ maxWidth: 600, bgcolor: '#005C4B', m: 0.5, borderRadius: 2, display: 'flex' }}>
+                    <CardContent style={{ paddingTop: '4px', paddingBottom: 0 }}>
+                      <Typography variant="body1" color="text.primary">{msg.text}</Typography>
                     </CardContent>
-                    <Typography m={2} variant="caption" color="text.secondary">{new Date(msg.sentAt).toString().split('GMT+0000')[0]}</Typography>
+                    <Typography m={2} variant="caption" color="text.secondary" style={{ justifyContent: 'flex-end', marginBottom: 0, marginLeft: 0 }}>{`${time} ${ticks}`}</Typography>
                   </Card>
                 </Box>
               ) : (
-                <Box sx={{ display: 'flex', justifyContent: 'flex-start', m: 1, }} >
-                  <Card sx={{ maxWidth: 600, bgcolor: '#202C33', margin: 'normal', m: 1, borderRadius: 3 }}>
-                    <CardContent>
-                      <Typography variant="body1" color="text.primary">
-                        {msg.text}
-                      </Typography>
+                <Box sx={{ display: 'flex', justifyContent: 'flex-start', m: 0 }} >
+                  <Card sx={{ maxWidth: 600, bgcolor: '#202C33', m: 0.5, borderRadius: 2, display: 'flex' }}>
+                    <CardContent style={{ paddingTop: '4px', paddingBottom: 0 }}>
+                      <Typography variant="body1" color="text.primary">{msg.text}</Typography>
                     </CardContent>
-                    <Typography m={2} variant="caption" color="text.secondary">{new Date(msg.sentAt).toString().split('GMT+0000')[0]}</Typography>
+                    <Typography m={2} variant="caption" color="text.secondary" style={{ justifyContent: 'flex-end', marginBottom: 0, marginLeft: 0 }}>{time}</Typography>
                   </Card>
                 </Box>
               )
-            })
-          }
+            }) }
         </Container>
         </ScrollToBottom>
       </div>

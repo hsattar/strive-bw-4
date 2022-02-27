@@ -1,22 +1,20 @@
-import AttachFileIcon from '@mui/icons-material/AttachFile';
-import InsertEmoticonIcon from '@mui/icons-material/InsertEmoticon';
-import KeyboardVoiceIcon from '@mui/icons-material/KeyboardVoice';
-import SendIcon from '@mui/icons-material/Send';
-import { TextField } from '@mui/material';
-import AppBar from '@mui/material/AppBar/AppBar';
-import Badge from '@mui/material/Badge';
-import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
-import IconButton from '@mui/material/IconButton';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Toolbar from '@mui/material/Toolbar/Toolbar';
-import e from 'express';
-import * as React from 'react';
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from 'react-redux';
-import { io } from 'socket.io-client';
-import { addMessageToConversationAction } from '../../redux/actions'
+import AttachFileIcon from '@mui/icons-material/AttachFile'
+import InsertEmoticonIcon from '@mui/icons-material/InsertEmoticon'
+import KeyboardVoiceIcon from '@mui/icons-material/KeyboardVoice'
+import SendIcon from '@mui/icons-material/Send'
+import { TextField } from '@mui/material'
+import AppBar from '@mui/material/AppBar/AppBar'
+import Badge from '@mui/material/Badge'
+import Box from '@mui/material/Box'
+import Grid from '@mui/material/Grid'
+import IconButton from '@mui/material/IconButton'
+import { createTheme, ThemeProvider } from '@mui/material/styles'
+import Toolbar from '@mui/material/Toolbar/Toolbar'
 import Picker from 'emoji-picker-react'
+import { FormEvent, useEffect, useState } from "react"
+import { useDispatch, useSelector } from 'react-redux'
+import { io } from 'socket.io-client'
+import { addMessageToConversationAction, updateConversationTicksAction } from '../../redux/actions'
 
 const theme = createTheme({
     palette: {
@@ -34,18 +32,15 @@ export const Footer = () => {
     const dispatch = useDispatch()
     const [message, setMessage] = useState('')
     const conversationId = useSelector((state: IReduxStore) => state.sidebar.conversationSelected?._id)
+    const allConversations = useSelector((state: IReduxStore) => state.sidebar.allConversations)
     const senderId = useSelector((state: IReduxStore) => state.user.currentUser?._id)
     const [isMessaging, setIsMessaging] = useState(false)
     const [chooseEmoji, setChooseEmonji] = useState(false)
-    const [chosenEmoji, setChosenEmoji] = useState(null)
+    const [openEmojiKeyboard, setOpenEmojiKeyBoard] = useState(false)
 
-    const onEmojiClick = (e: React.FormEvent, emojiObject: any) => {
-        setChosenEmoji(emojiObject)
+    const handleEmojiCLick = (e: any, emojiObject: any) => {
+        setMessage(msg => msg.concat(emojiObject.emoji))
     }
-     const EmojiData = (chosenEmoji: any) => (
-        <div style={{ textAlign: 'center' }}>
-        </div>
-    )
 
     const handleSendMessage = (e: React.FormEvent) => {
         e.preventDefault()
@@ -56,26 +51,30 @@ export const Footer = () => {
 
     useEffect(() => {
         socket.on('connect', () => {
-            console.log('Connection is now established!')
+            socket.emit('online', { senderId })
         })
-        socket.emit('newConnection', { room: conversationId || 'public' })
 
-        socket.on('receiveMessage', ({ messageContent, senderId, sentAt }) => {
-            console.log('new message received!')
-            console.log(message)
-            dispatch(addMessageToConversationAction({ text: messageContent, sender: senderId, sentAt }))
+        socket.on('receiveMessage', ({ messageContent, senderId, sentAt, ticks }) => {
+            dispatch(addMessageToConversationAction({ text: messageContent, sender: senderId, sentAt, ticks }))
+            console.log('here')
+            socket.emit('delivered', { conversationId })
+        })
+
+        socket.on('msg-received', ({ conversationId }) => {
+            console.log('msg-received')
+            const conversations = allConversations.map(convo => convo._id === conversationId ? { ...convo, ticks: 2 } : convo)
+            dispatch(updateConversationTicksAction(conversations))
         })
     }, [])
 
     useEffect(() => {
-        socket.emit('newConnection', { room: conversationId })
-        console.log(`I am in room ${conversationId}`);
-
+        socket.emit('newConnection', { room: conversationId || 'public' })
     }, [conversationId])
 
     return (
         <ThemeProvider theme={theme}>
             <Box>
+                { openEmojiKeyboard && <Picker onEmojiClick={handleEmojiCLick} /> }
                 <AppBar position='static' style={{ backgroundColor: '#202C34' }}>
                     <Toolbar>
                         <Grid item xs={2}>
@@ -87,13 +86,9 @@ export const Footer = () => {
                                 onClick={e => setChooseEmonji(true)}
                             >
                                 <Badge>
-                                    <InsertEmoticonIcon />
+                                    <InsertEmoticonIcon onClick={() => setOpenEmojiKeyBoard(prev => !prev)} />
                                 </Badge>
                             </IconButton>
-                                    {chooseEmoji && 
-                                        <Picker onEmojiClick={onEmojiClick} /> &&
-                                        chosenEmoji && <EmojiData chosenEmoji={chosenEmoji}/>
-                                    }
                             <IconButton size="large" color="secondary">
                                 <Badge>
                                     <AttachFileIcon color="secondary" />
@@ -109,15 +104,16 @@ export const Footer = () => {
                                     size="small"
                                     // multiline
                                     placeholder='Type a message'
-                                    // color="#C8CED0"
+                                    disabled={conversationId ? false : true}
                                     value={message}
+                                    onFocus={() => setOpenEmojiKeyBoard(false)}
                                     onChange={e => setMessage(e.target.value)}
                                     onInput={(e) => setIsMessaging(true)}
                                     onBlur={(e) => setIsMessaging(false)}
                                 />
                             </form>
                         </Grid>
-                        {isMessaging ? (
+                        {message.length > 0 ? (
                         <Grid item xs={1}>
                             <IconButton
                                 size="large"
@@ -147,5 +143,5 @@ export const Footer = () => {
                 </AppBar>
             </Box>
         </ThemeProvider >
-    );
+    )
 }

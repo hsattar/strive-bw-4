@@ -25,18 +25,17 @@ export const TopBar = () => {
 
     return (
         <>
-        {
-            (selectedConversation && otherUser) ? (
+        { (selectedConversation && otherUser) ? (
                 <ThemeProvider theme ={topBartheme}>
                     <Box>
                         <AppBar position='static'>
                             <Toolbar>
                                 <CardHeader
-                                    avatar={
-                                        <Avatar src={selectedConversation.name || otherUser[0].username} alt={selectedConversation.name || otherUser[0].username} />
-                                        }
+                                    avatar={ <Avatar src={selectedConversation.name || otherUser[0].username} alt={selectedConversation.name || otherUser[0].username} /> }
                                         title={selectedConversation.name || otherUser[0].username}
-                                        subheader={`Last seen ${new Date(otherUser[0].lastSeen).toString().split('GMT+0000')[0]}`}
+                                        subheader={selectedConversation.name ? 
+                                            selectedConversation.members.map(member => (member._id !== currentUser?._id) && `${member.username}, `).concat('You') 
+                                            : `Last seen ${new Date(otherUser[0].lastSeen).toString().split('GMT+0000')[0]}`}
                                     />
                                 <Box sx={{
                                         display: 'flex',
@@ -69,6 +68,7 @@ export const TopBar = () => {
                         <AppBar position='static'>
                             <Toolbar>
                                 <CardHeader
+                                        avatar={ <Avatar style={{ color: "#202C34", backgroundColor: "#202C34"}} /> }
                                         title={``}
                                         subheader={``}
                                     />
@@ -82,8 +82,7 @@ export const TopBar = () => {
                         </AppBar>
                     </Box>
                 </ThemeProvider>
-            )
-        }
+            ) }
         </>
     )
 }

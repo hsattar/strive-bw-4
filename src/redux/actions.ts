@@ -17,7 +17,8 @@ export const ACTIONS = {
     ADD_TO_LIST_OF_CONTACTS: 'ADD_TO_LIST_OF_CONTACTS',
     ADD_ANOTHER_CONTACT_TO_THE_LIST: 'ADD_ANOTHER_CONTACT_TO_THE_LIST',
     CLEAR_USER_INFO: 'CLEAR_USER_INFO',
-    CLEAR_SIDEBAR_INFO: 'CLEAR_SIDEBAR_INFO'
+    CLEAR_SIDEBAR_INFO: 'CLEAR_SIDEBAR_INFO',
+    UPDATE_CONVERSATION_TICKS: 'UPDATE_CONVERSATION_TICKS'
 }
 
 export const userLoginAction = () => ({
@@ -86,4 +87,9 @@ export const clearUserInfoAction = () => ({
 
 export const clearSidebarInfoAction = () => ({
     type: ACTIONS.CLEAR_SIDEBAR_INFO
+})
+
+export const updateConversationTicksAction = (conversations: IConversation[]) => ({
+    type: ACTIONS.UPDATE_CONVERSATION_TICKS,
+    payload: conversations
 })
