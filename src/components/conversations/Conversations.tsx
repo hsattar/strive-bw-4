@@ -8,7 +8,7 @@ import './convo.css'
 import { Footer } from "./Footer"
 import { TopBar } from "./TopBar"
 import ScrollToBottom from 'react-scroll-to-bottom'
-import { useCallback, useRef } from "react"
+import { useCallback } from "react"
 
 
 

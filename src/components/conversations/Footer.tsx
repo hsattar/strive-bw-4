@@ -36,16 +36,13 @@ export const Footer = () => {
     const conversationId = useSelector((state: IReduxStore) => state.sidebar.conversationSelected?._id)
     const senderId = useSelector((state: IReduxStore) => state.user.currentUser?._id)
     const [isMessaging, setIsMessaging] = useState(false)
-    const [chooseEmoji, setChooseEmonji] = useState(false)
-    const [chosenEmoji, setChosenEmoji] = useState(null)
+    const [showEmojiPicker, setShowEmojiPicker] = useState(false)
+
 
     const onEmojiClick = (e: React.FormEvent, emojiObject: any) => {
-        setChosenEmoji(emojiObject)
+        setMessage(prevText => prevText + emojiObject.emoji)
+        setShowEmojiPicker(false)
     }
-     const EmojiData = (chosenEmoji: any) => (
-        <div style={{ textAlign: 'center' }}>
-        </div>
-    )
 
     const handleSendMessage = (e: React.FormEvent) => {
         e.preventDefault()
@@ -76,6 +73,9 @@ export const Footer = () => {
     return (
         <ThemeProvider theme={theme}>
             <Box>
+                {showEmojiPicker && <Picker
+                    onEmojiClick={onEmojiClick}
+                />}
                 <AppBar position='static' style={{ backgroundColor: '#202C34' }}>
                     <Toolbar>
                         <Grid item xs={2}>
@@ -84,16 +84,12 @@ export const Footer = () => {
                                 aria-label="account of current user"
                                 aria-haspopup="true"
                                 color="secondary"
-                                onClick={e => setChooseEmonji(true)}
+                                onClick={e => setShowEmojiPicker(true)}
                             >
                                 <Badge>
                                     <InsertEmoticonIcon />
                                 </Badge>
                             </IconButton>
-                                    {chooseEmoji && 
-                                        <Picker onEmojiClick={onEmojiClick} /> &&
-                                        chosenEmoji && <EmojiData chosenEmoji={chosenEmoji}/>
-                                    }
                             <IconButton size="large" color="secondary">
                                 <Badge>
                                     <AttachFileIcon color="secondary" />
