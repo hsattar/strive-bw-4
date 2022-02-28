@@ -37,7 +37,8 @@ export default function ConvoContainer() {
       <div className="convo_wrapper">
         <ScrollToBottom checkInterval={17}>
         <Container sx={{ display: "column" }}>
-          { conversationMessages?.map(msg => {
+            {conversationMessages?.map((msg, index) => {
+            const lastMessage = conversationMessages.length -1 === index
             const hours = getHours(new Date(msg.sentAt))
             const minutes = getMinutes(new Date(msg.sentAt))
             let time
@@ -53,7 +54,7 @@ export default function ConvoContainer() {
 
             const ticks = msg.ticks === 3 ? '✔✔✔' : msg.ticks === 2 ? '✔✔' : '✔'
               return currentUserId === msg.sender ? (
-                <Box sx={{ display: 'flex', justifyContent: 'flex-end', m: 0 }} >
+                <Box key={index} ref={lastMessage ? setRef: null} sx={{ display: 'flex', justifyContent: 'flex-end', m: 0 }} >
                   <Card sx={{ maxWidth: 600, bgcolor: '#005C4B', m: 0.5, borderRadius: 2, display: 'flex' }}>
                     <CardContent style={{ paddingTop: '4px', paddingBottom: 0 }}>
                       <Typography variant="body1" color="text.primary">{msg.text}</Typography>
@@ -62,7 +63,7 @@ export default function ConvoContainer() {
                   </Card>
                 </Box>
               ) : (
-                <Box sx={{ display: 'flex', justifyContent: 'flex-start', m: 0 }} >
+                <Box key={index} ref={lastMessage ? setRef: null} sx={{ display: 'flex', justifyContent: 'flex-start', m: 0 }} >
                   <Card sx={{ maxWidth: 600, bgcolor: '#202C33', m: 0.5, borderRadius: 2, display: 'flex' }}>
                     <CardContent style={{ paddingTop: '4px', paddingBottom: 0 }}>
                       <Typography variant="body1" color="text.primary">{msg.text}</Typography>
