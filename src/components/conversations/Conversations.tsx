@@ -9,12 +9,18 @@ import { Footer } from "./Footer"
 import { TopBar } from "./TopBar"
 import ScrollToBottom from 'react-scroll-to-bottom'
 import { getHours, getMinutes } from 'date-fns'
+import { useCallback } from "react"
 
 
 
 export default function ConvoContainer() {
   const currentUserId = useSelector((state: IReduxStore) => state.user.currentUser?._id)
   const conversationMessages = useSelector((state: IReduxStore) => state.sidebar.conversationSelected?.chatHistory)
+  const setRef = useCallback(node => {
+    if (node) {
+      node.scrollIntoView({ smooth: true})
+    }
+  }, [])
 
   return (
     <Box
@@ -73,5 +79,4 @@ export default function ConvoContainer() {
     </Box>
   )
 }
-
 

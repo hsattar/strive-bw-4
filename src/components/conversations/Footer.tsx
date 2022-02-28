@@ -83,7 +83,7 @@ export const Footer = () => {
                                 aria-label="account of current user"
                                 aria-haspopup="true"
                                 color="secondary"
-                                onClick={e => setChooseEmonji(true)}
+                                onClick={e => setOpenEmojiKeyBoard(true)}
                             >
                                 <Badge>
                                     <InsertEmoticonIcon onClick={() => setOpenEmojiKeyBoard(prev => !prev)} />
